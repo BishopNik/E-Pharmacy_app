@@ -28,23 +28,6 @@ export const GlobalStyle = createGlobalStyle`
         font-display: swap;
     }
 
-    body {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', sans-serif;
-    }
-
-    h1, h3, p{
-        margin: 0;
-        padding: 0;
-    }
-
-    ul{
-        list-style: none;
-        padding: 0;
-    }
-
     :root {
         --main-black: rgba(29,30,33,1);
         --accent: rgba(89,177,122,1);
@@ -55,5 +38,26 @@ export const GlobalStyle = createGlobalStyle`
         --background-3: rgba(255,255,255,1);
         --accent-hover: rgba(63, 148, 95, 1);
         --accent-disabled: rgba(29, 30, 33, 0.1);
+        --text-grey: rgba(29, 30, 33, 0.4);
     }
+    
+    body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        background: var(--background-2);
+    }
+
+    h1, h3, p{
+        margin: 0;
+        padding: 0;
+    }
+
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
 `;

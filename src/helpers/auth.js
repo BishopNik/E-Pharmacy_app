@@ -21,7 +21,7 @@ export const login = async data => {
 	}
 };
 
-export const refresh = async data => {
+export const refresh = async () => {
 	try {
 		const user = await API.get('/users/refresh');
 		return user.data;
@@ -35,7 +35,7 @@ export const refresh = async data => {
 	}
 };
 
-export const logout = async data => {
+export const logout = async () => {
 	try {
 		await API.get('/users/logout');
 		return null;
@@ -48,7 +48,7 @@ export const logout = async data => {
 	}
 };
 
-export const getUserInfo = async data => {
+export const getUserInfo = async () => {
 	try {
 		const user = await API.get('/users/user-info');
 		return user.data;
@@ -58,6 +58,6 @@ export const getUserInfo = async data => {
 		},
 	}) {
 		toastError('Error fetching user info:', message);
-		return null;
+		return message;
 	}
 };

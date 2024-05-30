@@ -21,13 +21,13 @@ import {
 	IconViewPassword,
 } from 'components/styled.components/Login.styled';
 import { MainContext, login, loginSchema } from 'helpers';
-import logo from '../img/Logo/logo.png';
-import logo2x from '../img/Logo/logo@2x.png';
-import tabletka from '../img/Tabletka/tabletka.png';
-import tabletka2x from '../img/Tabletka/tabletka@2x.png';
+import logo from 'img/Logo/logo.png';
+import logo2x from 'img/Logo/logo@2x.png';
+import tabletka from 'img/Tabletka/tabletka.png';
+import tabletka2x from 'img/Tabletka/tabletka@2x.png';
 
 function LoginPage() {
-	const { isLoading, setIsLoading, setUser } = useContext(MainContext);
+	const { isLoading, setIsLoading, setUserData } = useContext(MainContext);
 	const [showPassword, setShowPassword] = useState(false);
 
 	const togglePasswordVisibility = () => {
@@ -37,7 +37,7 @@ function LoginPage() {
 	const handleSubmit = async data => {
 		setIsLoading(true);
 		const user = await login(data);
-		setUser(user);
+		setUserData(user);
 		setIsLoading(false);
 	};
 
@@ -84,7 +84,7 @@ function LoginPage() {
 								<InputContainer>
 									<InputField
 										error={errors?.email}
-										touched={touched?.email}
+										touched={touched.email && touched.email.toString()}
 										name='email'
 										type='email'
 										placeholder='Email address'
@@ -94,7 +94,7 @@ function LoginPage() {
 								<InputContainer>
 									<InputField
 										error={errors?.password}
-										touched={touched?.password}
+										touched={touched.password && touched.password.toString()}
 										name='password'
 										type={showPassword ? 'text' : 'password'}
 										placeholder={'Password'}

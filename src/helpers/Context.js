@@ -6,25 +6,25 @@ import { API, refresh } from 'helpers';
 export const MainContext = createContext();
 
 export const Context = ({ children }) => {
-	const [user, setUser] = useState(null);
+	const [userData, setUserData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
 
 	useEffect(() => {
-		if (!user) return;
-		localStorage.setItem('token', user.token);
+		if (!userData) return;
+		localStorage.setItem('token', userData.token);
 		API.interceptors.request.use(
 			config => {
-				config.headers.Authorization = `Bearer ${user.token}`;
+				config.headers.Authorization = `Bearer ${userData.token}`;
 				return config;
 			},
 			error => {
 				return Promise.reject(error);
 			}
 		);
-	}, [user]);
+	}, [userData]);
 
 	useEffect(() => {
 		const requestInterceptor = API.interceptors.request.use(
@@ -42,8 +42,8 @@ export const Context = ({ children }) => {
 
 		(async () => {
 			setIsLoading(true);
-			const user = await refresh();
-			setUser(user);
+			const userData = await refresh();
+			setUserData(userData);
 			setIsLoading(false);
 		})();
 
@@ -55,8 +55,8 @@ export const Context = ({ children }) => {
 	return (
 		<MainContext.Provider
 			value={{
-				user,
-				setUser,
+				userData,
+				setUserData,
 				isLoading,
 				setIsLoading,
 				error,
