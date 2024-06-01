@@ -8,7 +8,6 @@ export const AsideContainer = styled.aside`
 	display: flex;
 	align-items: flex-start;
 	gap: 20px;
-	height: 100vh;
 	border-right: 1px solid var(--accent-disabled);
 `;
 
@@ -32,8 +31,13 @@ export const LinkStyled = styled(Link)`
 	align-items: center;
 	width: 100%;
 	height: 100%;
+	fill: ${({ active }) => (active === 'true' ? 'var(--accent)' : 'var(--text)')};
+
+	&:hover {
+		fill: var(--accent);
+	}
 `;
 
 export const IconPage = styled(Icon)`
-	fill: ${({ active }) => (active === 'true' ? 'var(--accent)' : 'var(--text)')};
+	fill: inherit;
 `;

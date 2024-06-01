@@ -16,11 +16,9 @@ const SharedLayout = () => {
 			<Header />
 			<Container>
 				<SideMenu />
-				<main>
-					<Suspense fallback={<Loader />}>
-						<Outlet />
-					</Suspense>
-				</main>
+				<Suspense fallback={<Loader />}>
+					<Outlet />
+				</Suspense>
 			</Container>
 		</>
 	) : (

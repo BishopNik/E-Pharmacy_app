@@ -1,7 +1,11 @@
 /** @format */
 
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import DataView from 'components/DataView';
+import Loader from 'components/Loader';
+import TableCustomers from 'components/TableCustomers';
+import TableIncomeExpenses from 'components/TableIncomeExpenses';
+import { MainContext, fetchDataDashboard } from 'helpers';
 import {
 	StatisticsContainer,
 	DataContainer,
@@ -9,6 +13,16 @@ import {
 } from 'components/styled.components/DashboardPage.styled';
 
 function DashboardPage() {
+	const { isLoading, setIsLoading } = useContext(MainContext);
+	const [dataDashboard, setDataDashboard] = useState(null);
+
+	useEffect(() => {
+		setIsLoading(true);
+		fetchDataDashboard()
+			.then(data => setDataDashboard(data))
+			.finally(() => setIsLoading(false));
+	}, [setIsLoading]);
+
 	return (
 		<DataContainer>
 			<section>
@@ -16,21 +30,26 @@ function DashboardPage() {
 					<DataView
 						type={'products'}
 						nameData={'All product'}
-						countData={8000}
+						countData={dataDashboard?.totalProducts || 0}
 						iconName={'products'}
 					/>
 					<DataView
 						nameData={'All suppliers'}
-						countData={120}
+						countData={dataDashboard?.totalSuppliers || 0}
 						iconName={'stakeholders'}
 					/>
-					<DataView nameData={'All customers'} countData={80} iconName={'stakeholders'} />
+					<DataView
+						nameData={'All customers'}
+						countData={dataDashboard?.totalCustomers || 0}
+						iconName={'stakeholders'}
+					/>
 				</StatisticsContainer>
 			</section>
 			<SectionTableContainer>
-				<div>Recent Customers</div>
-				<div>Income/Expenses</div>
+				<TableCustomers dataCustomers={dataDashboard?.customers} />
+				<TableIncomeExpenses dataIncomeExpenses={dataDashboard?.income_expenses} />
 			</SectionTableContainer>
+			{isLoading && <Loader />}
 		</DataContainer>
 	);
 }

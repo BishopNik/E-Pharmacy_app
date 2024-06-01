@@ -68,6 +68,10 @@ export const HeaderLogout = styled.button`
 	background: var(--accent);
 	box-shadow: 0 -1px 7px 0 rgba(71, 71, 71, 0.05);
 	cursor: pointer;
+
+	&:hover {
+		background: var(--accent-hover);
+	}
 `;
 
 export const HeaderIconLogout = styled(Icon)`

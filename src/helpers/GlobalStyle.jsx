@@ -49,7 +49,7 @@ export const GlobalStyle = createGlobalStyle`
         background: var(--background-2);
     }
 
-    h1, h3, p{
+    h1, h2, h3, p{
         margin: 0;
         padding: 0;
     }

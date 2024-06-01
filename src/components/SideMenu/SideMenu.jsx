@@ -18,53 +18,28 @@ function SideMenu() {
 		<AsideContainer>
 			<ContainerLink>
 				<ContainerIconPage>
-					<LinkStyled to='/dashboard'>
-						<IconPage
-							name='dashboard'
-							active={(page === '/dashboard').toString()}
-							width={12}
-							height={12}
-						/>
+					<LinkStyled to='/dashboard' active={(page === '/dashboard').toString()}>
+						<IconPage name='dashboard' width={12} height={12} />
 					</LinkStyled>
 				</ContainerIconPage>
 				<ContainerIconPage>
-					<LinkStyled to='/orders'>
-						<IconPage
-							name='order'
-							active={(page === '/orders').toString()}
-							width={14}
-							height={14}
-						/>
+					<LinkStyled to='/orders' active={(page === '/orders').toString()}>
+						<IconPage name='order' width={14} height={14} />
 					</LinkStyled>
 				</ContainerIconPage>
 				<ContainerIconPage>
-					<LinkStyled to='/products'>
-						<IconPage
-							name='product'
-							active={(page === '/products').toString()}
-							width={12}
-							height={14}
-						/>
+					<LinkStyled to='/products' active={(page === '/products').toString()}>
+						<IconPage name='product' width={12} height={14} />
 					</LinkStyled>
 				</ContainerIconPage>
 				<ContainerIconPage>
-					<LinkStyled to='/suppliers'>
-						<IconPage
-							name='supplier'
-							active={(page === '/suppliers').toString()}
-							width={12}
-							height={14}
-						/>
+					<LinkStyled to='/suppliers' active={(page === '/suppliers').toString()}>
+						<IconPage name='supplier' width={12} height={14} />
 					</LinkStyled>
 				</ContainerIconPage>
 				<ContainerIconPage>
-					<LinkStyled to='/customers'>
-						<IconPage
-							name='customer'
-							active={(page === '/customers').toString()}
-							width={14}
-							height={11}
-						/>
+					<LinkStyled to='/customers' active={(page === '/customers').toString()}>
+						<IconPage name='customer' width={14} height={11} />
 					</LinkStyled>
 				</ContainerIconPage>
 			</ContainerLink>
