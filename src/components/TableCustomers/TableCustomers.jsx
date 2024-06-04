@@ -28,19 +28,19 @@ function TableCustomers({ dataCustomers }) {
 				</thead>
 				<tbody>
 					{dataCustomers &&
-						dataCustomers.map(item => (
-							<TableTr>
+						dataCustomers.map(({ image, name, email, spent }, idx) => (
+							<TableTr key={idx}>
 								<TableTd>
 									<UserInfo>
-										<UserLogo src={item.image} alt='User logo' />
+										<UserLogo src={image} alt='User logo' />
 										<UserName>
-											<EllipsisText text={item.name} length={16} />
+											<EllipsisText text={name} length={16} />
 										</UserName>
 									</UserInfo>
 								</TableTd>
-								<TableTd>{item.email}</TableTd>
+								<TableTd>{email}</TableTd>
 								<TableTd>
-									{item.spent.toLocaleString('en-US', {
+									{spent.toLocaleString('en-US', {
 										minimumFractionDigits: 2,
 										maximumFractionDigits: 2,
 									})}

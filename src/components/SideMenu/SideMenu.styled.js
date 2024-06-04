@@ -9,6 +9,7 @@ export const AsideContainer = styled.aside`
 	align-items: flex-start;
 	gap: 20px;
 	border-right: 1px solid var(--accent-disabled);
+	height: calc(100vh - 82px);
 `;
 
 export const ContainerLink = styled.ul`

@@ -1,59 +1,104 @@
 /** @format */
 
-import React from 'react';
-import { Container } from 'components/styled.components/DataPage.styled';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import {
+	Container,
+	TableContainer,
+	TableTitle,
+	TableBody,
+	TableTr,
+	TableTh,
+	TableTd,
+	UserInfo,
+	UserName,
+	UserLogo,
+	ContainerAction,
+	ContainerFilter,
+	ContainerAddButton,
+	InputFilter,
+	ButtonFilter,
+	IconFilter,
+	ButtonAdd,
+	RoundAdd,
+	TextAdd,
+	IconAdd,
+} from 'components/styled.components/DataPage.styled';
+import { ProductModal } from 'components/Modal';
 
 function DataPage() {
+	const location = useLocation();
+	const page = location.pathname;
+	const [valueFilter, setValueFilter] = useState('');
+	const [isOpen, setIsOpen] = useState(false);
+	const dataCustomers = [{ name: 'Izya', email: 'test@test.ua', spent: 4567 }];
+
+	const handlerFilter = () => {
+		setValueFilter('');
+	};
+
+	const handlerClose = () => {
+		setIsOpen(false);
+	};
+
 	return (
 		<Container>
-			<div>
-				<input type='text' />
-				<button type='button'>
-					<span>F</span>
-					<span>Filter</span>
-				</button>
-			</div>
-			<button type='button'>
-				<span>+</span>
-				<span>Add a new product</span>
-			</button>
-			<h2>Name table</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Header1</th>
-						<th>Header2</th>
-						<th>Header3</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Row1</td>
-						<td>Data1</td>
-						<td>Data1</td>
-					</tr>
-					<tr>
-						<td>Row2</td>
-						<td>Data2</td>
-						<td>Data2</td>
-					</tr>
-					<tr>
-						<td>Row3</td>
-						<td>Data3</td>
-						<td>Data3</td>
-					</tr>
-					<tr>
-						<td>Row4</td>
-						<td>Data4</td>
-						<td>Data4</td>
-					</tr>
-					<tr>
-						<td>Row5</td>
-						<td>Data5</td>
-						<td>Data5</td>
-					</tr>
-				</tbody>
-			</table>
+			<ContainerAction>
+				<ContainerFilter>
+					<InputFilter
+						type='text'
+						placeholder='User Name'
+						value={valueFilter}
+						onChange={({ target: { value } }) => setValueFilter(value)}
+					/>
+					<ButtonFilter type='button' onClick={handlerFilter}>
+						<IconFilter name='filter' />
+						<span>Filter</span>
+					</ButtonFilter>
+				</ContainerFilter>
+
+				<ContainerAddButton>
+					<ButtonAdd type='button' onClick={() => setIsOpen(true)}>
+						<RoundAdd type='button'>
+							<IconAdd name='add' />
+						</RoundAdd>
+						<TextAdd>Add a new product</TextAdd>
+					</ButtonAdd>
+					<ProductModal isOpen={isOpen} onRequestClose={handlerClose} />
+				</ContainerAddButton>
+			</ContainerAction>
+			<TableContainer>
+				<TableTitle>All products</TableTitle>
+				<TableBody>
+					<thead>
+						<TableTr>
+							<TableTh>Name</TableTh>
+							<TableTh>Email</TableTh>
+							<TableTh>Spent</TableTh>
+						</TableTr>
+					</thead>
+					<tbody>
+						{dataCustomers &&
+							dataCustomers.map((item, idx) => (
+								<TableTr key={idx}>
+									<TableTd>
+										<UserInfo>
+											{/* <UserLogo src={item.image} alt='User logo' /> */}
+											<UserName>{item.name}</UserName>
+										</UserInfo>
+									</TableTd>
+									<TableTd>{item.email}</TableTd>
+									<TableTd>
+										{item.spent.toLocaleString('en-US', {
+											minimumFractionDigits: 2,
+											maximumFractionDigits: 2,
+										})}
+									</TableTd>
+								</TableTr>
+							))}
+					</tbody>
+				</TableBody>
+			</TableContainer>
 		</Container>
 	);
 }

@@ -5,6 +5,8 @@ import * as Yup from 'yup';
 const emailRegex = RegExp(/^[A-Z|a-z0-9!#$%&._%+-/=?^]+@[A-Z|a-z0-9.-]+\.[A-Z|a-z]{2,4}$/);
 const passwordRegex = RegExp(/^[A-Z|a-z0-9!#$%&._%+-/=?^]{0,100}$/);
 
+export const categories = ['Medicine', 'Heart', 'Head', 'Hand', 'Leg', 'Dental Care', 'Skin Care'];
+
 export const loginSchema = Yup.object().shape({
 	email: Yup.string()
 		.matches(emailRegex, 'Invalid email')
@@ -14,4 +16,14 @@ export const loginSchema = Yup.object().shape({
 		.min(6, 'Too Short!')
 		.matches(passwordRegex, 'Invalid password')
 		.required('This is a required field'),
+});
+
+export const productSchema = Yup.object().shape({
+	name: Yup.string().min(2, 'Too Short!').required('This is a required field'),
+	category: Yup.string()
+		.oneOf(categories, 'Invalid category')
+		.required('This is a required field'),
+	stock: Yup.number().moreThan(0, 'Must be greater than 0').required('This is a required field'),
+	suppliers: Yup.string().min(2, 'Too Short!').required('This is a required field'),
+	price: Yup.number().moreThan(0, 'Must be greater than 0').required('This is a required field'),
 });

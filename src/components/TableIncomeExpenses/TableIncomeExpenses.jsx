@@ -27,18 +27,18 @@ function TableIncomeExpenses({ dataIncomeExpenses }) {
 				</thead>
 				<tbody>
 					{dataIncomeExpenses &&
-						dataIncomeExpenses.map(item => (
-							<TableTr>
+						dataIncomeExpenses.map(({ type, name, amount }, idx) => (
+							<TableTr key={idx}>
 								<TableTdType>
-									<TypeTransaction type={item.type}>{item.type}</TypeTransaction>
+									<TypeTransaction type={type}>{type}</TypeTransaction>
 								</TableTdType>
 								<TableTdName>
-									<EllipsisText text={item.name} length={40} />
+									<EllipsisText text={name} length={40} />
 								</TableTdName>
 								<TableTdSum>
-									<SumColor type={item.type}>
-										{item.amount > 0 ? '+' : null}
-										{item.amount.toLocaleString('en-US', {
+									<SumColor type={type}>
+										{amount > 0 ? '+' : null}
+										{amount.toLocaleString('en-US', {
 											minimumFractionDigits: 2,
 											maximumFractionDigits: 2,
 										})}
