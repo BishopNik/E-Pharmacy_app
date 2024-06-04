@@ -2,7 +2,7 @@
 
 import React, { useState, useContext, useEffect } from 'react';
 import DataView from 'components/DataView';
-import Loader from 'components/Loader';
+import { Loader } from 'components/Loader';
 import TableCustomers from 'components/TableCustomers';
 import TableIncomeExpenses from 'components/TableIncomeExpenses';
 import { MainContext, fetchDataDashboard } from 'helpers';

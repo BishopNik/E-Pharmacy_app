@@ -2,7 +2,7 @@
 
 import React, { useContext, useState } from 'react';
 import { Form, Formik } from 'formik';
-import Loader from 'components/Loader';
+import { Loader } from 'components/Loader';
 import {
 	Main,
 	Header,

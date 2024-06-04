@@ -108,6 +108,27 @@ export const TextAdd = styled.span`
 	color: var(--main-black);
 `;
 
+export const SupplierButtonAdd = styled.button`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid rgba(89, 177, 122, 0.5);
+	border-radius: 60px;
+	width: 196px;
+	height: 44px;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 129%;
+	color: var(--main-black);
+	background: var(--background-2);
+	cursor: pointer;
+
+	&:hover {
+		color: var(--background-3);
+		background: var(--accent-hover);
+	}
+`;
+
 export const TableContainer = styled.div`
 	width: 630px;
 	border: 1px solid var(--accent-disabled);

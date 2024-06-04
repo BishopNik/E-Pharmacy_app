@@ -23,8 +23,9 @@ import {
 	RoundAdd,
 	TextAdd,
 	IconAdd,
+	SupplierButtonAdd,
 } from 'components/styled.components/DataPage.styled';
-import { ProductModal } from 'components/Modal';
+import { ProductModal, SupplierModal } from 'components/Modal';
 
 function DataPage() {
 	const location = useLocation();
@@ -32,6 +33,36 @@ function DataPage() {
 	const [valueFilter, setValueFilter] = useState('');
 	const [isOpen, setIsOpen] = useState(false);
 	const dataCustomers = [{ name: 'Izya', email: 'test@test.ua', spent: 4567 }];
+
+	const buttonAdd = () => {
+		switch (page) {
+			case '/products':
+				return (
+					<ContainerAddButton>
+						<ButtonAdd type='button' onClick={() => setIsOpen(true)}>
+							<RoundAdd>
+								<IconAdd name='add' />
+							</RoundAdd>
+							<TextAdd>Add a new product</TextAdd>
+						</ButtonAdd>
+						<ProductModal isOpen={isOpen} onRequestClose={handlerClose} />
+					</ContainerAddButton>
+				);
+
+			case '/suppliers':
+				return (
+					<>
+						<SupplierButtonAdd type='button' onClick={() => setIsOpen(true)}>
+							Add a new suppliers
+						</SupplierButtonAdd>
+						<SupplierModal isOpen={isOpen} onRequestClose={handlerClose} />
+					</>
+				);
+
+			default:
+				return null;
+		}
+	};
 
 	const handlerFilter = () => {
 		setValueFilter('');
@@ -57,15 +88,7 @@ function DataPage() {
 					</ButtonFilter>
 				</ContainerFilter>
 
-				<ContainerAddButton>
-					<ButtonAdd type='button' onClick={() => setIsOpen(true)}>
-						<RoundAdd type='button'>
-							<IconAdd name='add' />
-						</RoundAdd>
-						<TextAdd>Add a new product</TextAdd>
-					</ButtonAdd>
-					<ProductModal isOpen={isOpen} onRequestClose={handlerClose} />
-				</ContainerAddButton>
+				{buttonAdd()}
 			</ContainerAction>
 			<TableContainer>
 				<TableTitle>All products</TableTitle>

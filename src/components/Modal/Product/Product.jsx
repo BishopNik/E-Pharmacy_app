@@ -3,7 +3,8 @@
 import React, { useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
 import ModalWindow from '../Modal';
-import { productSchema } from 'helpers';
+import { productSchema, categories, addProduct } from 'helpers';
+import { MiniLoader } from 'components/Loader';
 import {
 	MainContainer,
 	ModalTitle,
@@ -21,9 +22,9 @@ import {
 	CategoryItem,
 	IconMenuCategory,
 } from './Product.styled';
-import { categories } from 'helpers';
 
 function ProductModal({ isOpen, onRequestClose, productEdit }) {
+	const [isLoading, setIsLoading] = useState(false);
 	const [isShowList, setIsShowList] = useState(false);
 	const [category, setCategory] = useState('');
 	const cancelAddProduct = useRef(null);
@@ -37,9 +38,11 @@ function ProductModal({ isOpen, onRequestClose, productEdit }) {
 		setFieldValue('category', category);
 	};
 
-	const handleFormSubmit = values => {
-		console.log(values);
-		onRequestClose();
+	const handleFormSubmit = async values => {
+		setIsLoading(true);
+		const newProduct = await addProduct(values);
+		if (newProduct) onRequestClose();
+		setIsLoading(false);
 	};
 
 	const handleCancel = () => {
@@ -160,6 +163,7 @@ function ProductModal({ isOpen, onRequestClose, productEdit }) {
 					)}
 				</Formik>
 			</MainContainer>
+			{isLoading && <MiniLoader />}
 		</ModalWindow>
 	);
 }

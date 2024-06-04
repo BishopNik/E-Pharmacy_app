@@ -1,3 +1,4 @@
 /** @format */
 
-export { default } from './Loader.jsx';
+export { default as Loader } from './Loader.jsx';
+export { default as MiniLoader } from './MiniLoader';

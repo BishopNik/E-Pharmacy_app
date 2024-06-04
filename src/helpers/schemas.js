@@ -6,6 +6,7 @@ const emailRegex = RegExp(/^[A-Z|a-z0-9!#$%&._%+-/=?^]+@[A-Z|a-z0-9.-]+\.[A-Z|a-
 const passwordRegex = RegExp(/^[A-Z|a-z0-9!#$%&._%+-/=?^]{0,100}$/);
 
 export const categories = ['Medicine', 'Heart', 'Head', 'Hand', 'Leg', 'Dental Care', 'Skin Care'];
+export const statusList = ['Active', 'Deactive'];
 
 export const loginSchema = Yup.object().shape({
 	email: Yup.string()
@@ -26,4 +27,16 @@ export const productSchema = Yup.object().shape({
 	stock: Yup.number().moreThan(0, 'Must be greater than 0').required('This is a required field'),
 	suppliers: Yup.string().min(2, 'Too Short!').required('This is a required field'),
 	price: Yup.number().moreThan(0, 'Must be greater than 0').required('This is a required field'),
+});
+
+export const supplierSchema = Yup.object().shape({
+	name: Yup.string().min(2, 'Too Short!').required('This is a required field'),
+	address: Yup.string().required('This is a required field'),
+	company: Yup.string().min(2, 'Too Short!').required('This is a required field'),
+	date: Yup.date().required('This is a required field'),
+	amount: Yup.number()
+
+		.moreThan(0, 'Must be greater than 0')
+		.required('This is a required field'),
+	status: Yup.string().oneOf(statusList, 'Invalid status').required('This is a required field'),
 });
