@@ -1,6 +1,7 @@
 /** @format */
 
 import * as Yup from 'yup';
+import { startOfToday } from 'date-fns';
 
 const emailRegex = RegExp(/^[A-Z|a-z0-9!#$%&._%+-/=?^]+@[A-Z|a-z0-9.-]+\.[A-Z|a-z]{2,4}$/);
 const passwordRegex = RegExp(/^[A-Z|a-z0-9!#$%&._%+-/=?^]{0,100}$/);
@@ -33,7 +34,9 @@ export const supplierSchema = Yup.object().shape({
 	name: Yup.string().min(2, 'Too Short!').required('This is a required field'),
 	address: Yup.string().required('This is a required field'),
 	company: Yup.string().min(2, 'Too Short!').required('This is a required field'),
-	date: Yup.date().required('This is a required field'),
+	date: Yup.date()
+		.min(startOfToday(), 'Date cannot be in the past')
+		.required('This is a required field'),
 	amount: Yup.number()
 
 		.moreThan(0, 'Must be greater than 0')

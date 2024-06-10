@@ -2,6 +2,8 @@
 
 import React, { useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
+import DatePicker from 'react-datepicker';
+import { formatISO } from 'date-fns';
 import ModalWindow from '../Modal';
 import { addSupplier, supplierSchema, statusList } from 'helpers';
 import { MiniLoader } from 'components/Loader';
@@ -17,9 +19,8 @@ import {
 	AddButton,
 	CancelButton,
 	ErrorMsg,
-	CategoryListContainer,
-	CategoryList,
-	CategoryItem,
+	StatusList,
+	StatusItem,
 	IconStatus,
 	IconDate,
 } from './Supplier.styled';
@@ -28,7 +29,11 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isShowList, setIsShowList] = useState(false);
 	const [status, setStatus] = useState('');
+	const [startDate, setStartDate] = useState(
+		supplierEdit?.date ? new Date(supplierEdit.date) : ''
+	);
 	const cancelAddSupplier = useRef(null);
+	const datePickerRef = useRef(null);
 
 	const handlerShowList = () => {
 		setIsShowList(!isShowList);
@@ -39,10 +44,15 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 		setFieldValue('status', status);
 	};
 
+	const handleDateSelect = (date, setFieldValue) => {
+		setStartDate(date);
+		setFieldValue('date', date);
+	};
+
 	const handleFormSubmit = async values => {
 		setIsLoading(true);
 		const newSupplier = await addSupplier(values);
-		if (newSupplier) onRequestClose();
+		if (newSupplier) handlerClose();
 		setIsLoading(false);
 	};
 
@@ -55,8 +65,15 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 
 	const handlerClose = () => {
 		setStatus('');
+		setStartDate('');
 		setIsShowList(false);
 		onRequestClose();
+	};
+
+	const handleFieldClick = () => {
+		if (datePickerRef.current) {
+			datePickerRef.current.setOpen(true);
+		}
 	};
 
 	return (
@@ -113,10 +130,25 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 								<FieldContainer>
 									<FieldStyled
 										$statusError={!errors.date && touched.date}
+										onChange={date => handleDateSelect(date, setFieldValue)}
+										value={startDate ? formatISO(startDate) : ''}
 										type='text'
 										name='date'
 										placeholder='Delivery date'
-										disabled
+										onClick={handleFieldClick}
+										readOnly
+									/>
+									<DatePicker
+										selected={startDate}
+										openToDate={startDate ? new Date(startDate) : ''}
+										onChange={date => handleDateSelect(date, setFieldValue)}
+										customInput={<div />}
+										showTimeSelect
+										timeFormat='HH:mm'
+										timeIntervals={15}
+										timeCaption='time'
+										dateFormat='MMMM d, yyyy h:mm aa'
+										ref={datePickerRef}
 									/>
 									<IconDate name='date' />
 									<ErrorMsg name='date' component='span' />
@@ -135,27 +167,28 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 										$statusError={!errors.status && touched.status}
 										onClick={handlerShowList}
 										value={status}
+										$status={status}
 										type='text'
 										name='status'
 										placeholder='Status'
+										readOnly
 									/>
 									<IconStatus name='menu' $isOpen={isShowList} />
 									{!isShowList && <ErrorMsg name='status' component='span' />}
 									{isShowList && (
-										<CategoryListContainer>
-											<CategoryList>
-												{statusList.map(st => (
-													<CategoryItem
-														key={st}
-														onClick={() =>
-															handleStatusSelect(st, setFieldValue)
-														}
-													>
-														{st}
-													</CategoryItem>
-												))}
-											</CategoryList>
-										</CategoryListContainer>
+										<StatusList>
+											{statusList.map(st => (
+												<StatusItem
+													key={st}
+													$status={st}
+													onClick={() =>
+														handleStatusSelect(st, setFieldValue)
+													}
+												>
+													{st}
+												</StatusItem>
+											))}
+										</StatusList>
 									)}
 								</FieldContainer>
 							</FormFieldsContainer>

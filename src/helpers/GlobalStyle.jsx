@@ -60,4 +60,8 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
 
+    .react-datepicker-popper .react-datepicker {
+        display: flex;
+    }
+
 `;

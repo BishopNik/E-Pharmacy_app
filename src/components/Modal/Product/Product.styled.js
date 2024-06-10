@@ -43,7 +43,7 @@ export const FieldStyled = styled(Field)`
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 150%;
-	color: rgba(29, 30, 33, 1);
+	color: rgba(29, 30, 33, 0.8);
 
 	&::-webkit-outer-spin-button,
 	&::-webkit-inner-spin-button {
@@ -55,6 +55,10 @@ export const FieldStyled = styled(Field)`
 
 	&[name='category'] {
 		cursor: pointer;
+	}
+
+	&::placeholder {
+		color: var(--text-grey);
 	}
 `;
 
@@ -195,7 +199,8 @@ export const IconMenuCategory = styled(Icon)`
 	transform: ${({ $isOpen }) => ($isOpen ? 'rotateX(0deg)' : 'rotateX(180deg)')};
 	cursor: pointer;
 
-	&:hover {
+	&:hover,
+	${FieldContainer}:hover & {
 		stroke: var(--accent-hover);
 	}
 `;

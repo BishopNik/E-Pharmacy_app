@@ -2,7 +2,9 @@
 
 import styled from 'styled-components';
 import { Field, ErrorMessage } from 'formik';
+import DatePicker from 'react-datepicker';
 import Icon from 'components/Icon';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export const MainContainer = styled.div`
 	width: 536px;
@@ -43,23 +45,28 @@ export const FieldStyled = styled(Field)`
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 150%;
-	color: rgba(29, 30, 33, 1);
-
-	&::-webkit-outer-spin-button,
-	&::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-	}
-	& {
-		-moz-appearance: textfield;
-	}
+	color: rgba(29, 30, 33, 0.8);
 
 	&[name='status'],
 	&[name='date'] {
 		cursor: pointer;
 	}
 
+	&[name='status'] {
+		color: ${({ $status }) => ($status === 'Active' ? 'var(--accent-hover)' : 'red')};
+		cursor: pointer;
+	}
+
+	&[name='date'] {
+		padding-right: 40px;
+	}
+
 	&:disabled {
 		background: var(--background-3);
+	}
+
+	&::placeholder {
+		color: var(--text-grey);
 	}
 `;
 
@@ -146,46 +153,27 @@ export const ErrorMsg = styled(ErrorMessage)`
 	background: var(--background-3);
 `;
 
-export const CategoryListContainer = styled.div`
+export const StatusList = styled.ul`
 	position: relative;
 	top: 8px;
 	z-index: 100;
-	border-radius: 15px;
-	width: 224px;
-	height: 140px;
-	padding: 13px 8px 13px 18px;
-	background: var(--accent);
-`;
-
-export const CategoryList = styled.ul`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 6px;
-	width: 198px;
-	height: 114px;
-	overflow-y: scroll;
-
-	&::-webkit-scrollbar {
-		width: 6px;
-		border-radius: 12px;
-	}
-	&::-webkit-scrollbar-thumb {
-		height: 52px;
-		background-color: rgba(255, 255, 255, 0.4);
-		border-radius: 12px;
-	}
-	&::-webkit-scrollbar-thumb:hover {
-		background-color: rgba(255, 255, 255, 0.8);
-	}
+	border-radius: 15px;
+	border: 1px solid var(--accent);
+	width: 224px;
+	padding: 13px 18px;
+	background: var(--background-3);
 `;
 
-export const CategoryItem = styled.li`
+export const StatusItem = styled.li`
 	width: 100%;
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 150%;
-	color: var(--background-3);
+	color: ${({ $status }) => ($status === 'Active' ? 'var(--accent-hover)' : 'red')};
 	cursor: pointer;
 `;
 
@@ -200,7 +188,8 @@ export const IconStatus = styled(Icon)`
 	transform: ${({ $isOpen }) => ($isOpen ? 'rotateX(0deg)' : 'rotateX(180deg)')};
 	cursor: pointer;
 
-	&:hover {
+	&:hover,
+	${FieldContainer}:hover & {
 		stroke: var(--accent-hover);
 	}
 `;
@@ -216,7 +205,8 @@ export const IconDate = styled(Icon)`
 	fill: transparent;
 	cursor: pointer;
 
-	&:hover {
+	&:hover,
+	${FieldContainer}:hover & {
 		stroke: var(--accent-hover);
 	}
 `;
