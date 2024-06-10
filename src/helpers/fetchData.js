@@ -3,6 +3,7 @@
 import { API } from './auth';
 import { toastError } from './toastwindow';
 
+//Dashboard
 export const fetchDataDashboard = async () => {
 	try {
 		const results = await API.get('/dashboard');
@@ -16,6 +17,65 @@ export const fetchDataDashboard = async () => {
 	}
 };
 
+//Orders
+export const getOrders = async () => {
+	try {
+		const results = await API.get('/orders');
+		return results.data;
+	} catch ({
+		response: {
+			data: { message },
+		},
+	}) {
+		toastError('Error fetching orders:', message);
+		return null;
+	}
+};
+
+//Customers
+export const getCustomers = async () => {
+	try {
+		const results = await API.get('/customers');
+		return results.data;
+	} catch ({
+		response: {
+			data: { message },
+		},
+	}) {
+		toastError('Error fetching customers:', message);
+		return null;
+	}
+};
+
+export const getCustomerById = async customerId => {
+	try {
+		const results = await API.get(`/customers/${customerId}`);
+		return results.data;
+	} catch ({
+		response: {
+			data: { message },
+		},
+	}) {
+		toastError('Error fetching customer:', message);
+		return null;
+	}
+};
+
+//Products
+export const getProducts = async () => {
+	try {
+		const results = await API.get('/products');
+		return results.data;
+	} catch ({
+		response: {
+			data: { message },
+		},
+	}) {
+		toastError('Error fetching product:', message);
+		return null;
+	}
+};
+
 export const addProduct = async data => {
 	try {
 		const results = await API.post('/products', data);
@@ -25,7 +85,50 @@ export const addProduct = async data => {
 			data: { message },
 		},
 	}) {
-		toastError('Error add product:', message);
+		toastError('Error adding product:', message);
+		return null;
+	}
+};
+
+export const editProductById = async (data, productId) => {
+	try {
+		const results = await API.put(`/products/${productId}`, data);
+		return results.data;
+	} catch ({
+		response: {
+			data: { message },
+		},
+	}) {
+		toastError('Error editing product:', message);
+		return null;
+	}
+};
+
+export const deleteProductById = async productId => {
+	try {
+		const results = await API.delete(`/products/${productId}`);
+		return results.data;
+	} catch ({
+		response: {
+			data: { message },
+		},
+	}) {
+		toastError('Error deleting product:', message);
+		return null;
+	}
+};
+
+//Suppliers
+export const getSuppliers = async () => {
+	try {
+		const results = await API.get('/suppliers');
+		return results.data;
+	} catch ({
+		response: {
+			data: { message },
+		},
+	}) {
+		toastError('Error fetching suppliers:', message);
 		return null;
 	}
 };
@@ -39,7 +142,21 @@ export const addSupplier = async data => {
 			data: { message },
 		},
 	}) {
-		toastError('Error add supplier:', message);
+		toastError('Error adding supplier:', message);
+		return null;
+	}
+};
+
+export const editSupplierById = async (data, supplierId) => {
+	try {
+		const results = await API.put(`/suppliers/${supplierId}`, data);
+		return results.data;
+	} catch ({
+		response: {
+			data: { message },
+		},
+	}) {
+		toastError('Error editing supplier:', message);
 		return null;
 	}
 };
