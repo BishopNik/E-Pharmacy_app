@@ -1,11 +1,12 @@
 /** @format */
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
+import { useQueryClient, useMutation } from 'react-query';
 import DatePicker from 'react-datepicker';
 import { formatISO } from 'date-fns';
 import ModalWindow from '../Modal';
-import { addSupplier, supplierSchema, statusList } from 'helpers';
+import { addSupplier, editSupplierById, supplierSchema, statusList } from 'helpers';
 import { MiniLoader } from 'components/Loader';
 import {
 	MainContainer,
@@ -28,12 +29,27 @@ import {
 function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isShowList, setIsShowList] = useState(false);
-	const [status, setStatus] = useState('');
-	const [startDate, setStartDate] = useState(
-		supplierEdit?.date ? new Date(supplierEdit.date) : ''
-	);
+	const [status, setStatus] = useState(supplierEdit?.status);
+	const [startDate, setStartDate] = useState(supplierEdit?.date);
 	const cancelAddSupplier = useRef(null);
 	const datePickerRef = useRef(null);
+
+	const queryClient = useQueryClient();
+
+	const mutation = useMutation(
+		supplierEdit
+			? values => editSupplierById(values, supplierEdit._id)
+			: values => addSupplier(values),
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries('suppliers');
+				setIsLoading(false);
+			},
+			onMutate: () => {
+				setIsLoading(true);
+			},
+		}
+	);
 
 	const handlerShowList = () => {
 		setIsShowList(!isShowList);
@@ -50,10 +66,8 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 	};
 
 	const handleFormSubmit = async values => {
-		setIsLoading(true);
-		const newSupplier = await addSupplier(values);
+		const newSupplier = await mutation.mutateAsync(values);
 		if (newSupplier) handlerClose();
-		setIsLoading(false);
 	};
 
 	const handleCancel = () => {
@@ -75,6 +89,13 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 			datePickerRef.current.setOpen(true);
 		}
 	};
+
+	useEffect(() => {
+		if (supplierEdit) {
+			setStatus(supplierEdit?.status);
+			setStartDate(supplierEdit?.date);
+		}
+	}, [supplierEdit]);
 
 	return (
 		<ModalWindow isOpen={isOpen} onRequestClose={handlerClose}>
@@ -138,6 +159,7 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 										onClick={handleFieldClick}
 										readOnly
 									/>
+									{console.log(startDate)}
 									<DatePicker
 										selected={startDate}
 										openToDate={startDate ? new Date(startDate) : ''}

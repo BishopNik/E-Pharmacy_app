@@ -8,7 +8,10 @@ import { PrivateRoute } from 'components/PrivateRoute';
 
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const DashboardPage = lazy(() => import('pages/DashboardPage'));
-const DataPage = lazy(() => import('pages/DataPage'));
+const OrdersPage = lazy(() => import('pages/OrdersPage'));
+const ProductsPage = lazy(() => import('pages/ProductsPage'));
+const SuppliersPage = lazy(() => import('pages/SuppliersPage'));
+const CustomersPage = lazy(() => import('pages/CustomersPage'));
 const UnknownPage = lazy(() => import('pages/UnknownPage'));
 
 function App() {
@@ -25,19 +28,19 @@ function App() {
 				/>
 				<Route
 					path='/orders'
-					element={<PrivateRoute component={<DataPage />} redirectTo='/' />}
+					element={<PrivateRoute component={<OrdersPage />} redirectTo='/' />}
 				/>
 				<Route
 					path='/products'
-					element={<PrivateRoute component={<DataPage />} redirectTo='/' />}
+					element={<PrivateRoute component={<ProductsPage />} redirectTo='/' />}
 				/>
 				<Route
 					path='/suppliers'
-					element={<PrivateRoute component={<DataPage />} redirectTo='/' />}
+					element={<PrivateRoute component={<SuppliersPage />} redirectTo='/' />}
 				/>
 				<Route
 					path='/customers'
-					element={<PrivateRoute component={<DataPage />} redirectTo='/' />}
+					element={<PrivateRoute component={<CustomersPage />} redirectTo='/' />}
 				/>
 				<Route path='*' element={<UnknownPage />} />
 			</Route>

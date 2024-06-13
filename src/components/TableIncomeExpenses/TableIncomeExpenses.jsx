@@ -27,8 +27,8 @@ function TableIncomeExpenses({ dataIncomeExpenses }) {
 				</thead>
 				<tbody>
 					{dataIncomeExpenses &&
-						dataIncomeExpenses.map(({ type, name, amount }, idx) => (
-							<TableTr key={idx}>
+						dataIncomeExpenses.map(({ type, name, amount, _id }) => (
+							<TableTr key={_id}>
 								<TableTdType>
 									<TypeTransaction type={type}>{type}</TypeTransaction>
 								</TableTdType>

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import logo from 'img/Logo/logo-main.png';
 import logo2x from 'img/Logo/logo-main@2x.png';
@@ -16,14 +16,15 @@ import {
 	HeaderLogout,
 	HeaderIconLogout,
 } from './Header.styled';
-import { MainContext, logout } from 'helpers';
+import { logout } from 'helpers';
+import { useMainContext } from 'hooks';
 
 function Header({ children }) {
 	const {
 		userData: { user },
 		setIsLoading,
 		setUserData,
-	} = useContext(MainContext);
+	} = useMainContext();
 	const location = useLocation();
 	const page = location.pathname;
 

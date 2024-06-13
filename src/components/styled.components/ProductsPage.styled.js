@@ -11,57 +11,10 @@ export const Container = styled.div`
 	padding: 75px 40px 40px 40px;
 `;
 
-export const ContainerAction = styled.ul`
+export const ContainerAction = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-`;
-
-export const ContainerFilter = styled.li`
-	display: flex;
-	align-items: center;
-	gap: 14px;
-`;
-
-export const InputFilter = styled.input`
-	border: 1px solid rgba(29, 30, 33, 0.1);
-	border-radius: 60px;
-	width: 224px;
-	height: 44px;
-	padding: 13px 18px;
-	box-shadow: 0 -1px 5px 0 rgba(71, 71, 71, 0.05);
-	background: var(--background-3);
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 150%;
-	color: rgba(29, 30, 33, 0.4);
-`;
-
-export const ButtonFilter = styled.button`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
-	border-radius: 60px;
-	border: none;
-	width: 116px;
-	height: 44px;
-	background: var(--accent);
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 129%;
-	color: var(--background-3);
-	cursor: pointer;
-
-	&:hover {
-		background: var(--accent-hover);
-	}
-`;
-
-export const IconFilter = styled(Icon)`
-	fill: transparent;
-	width: 14px;
-	height: 12px;
 `;
 
 export const ContainerAddButton = styled.li`
@@ -108,29 +61,7 @@ export const TextAdd = styled.span`
 	color: var(--main-black);
 `;
 
-export const SupplierButtonAdd = styled.button`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: 1px solid rgba(89, 177, 122, 0.5);
-	border-radius: 60px;
-	width: 196px;
-	height: 44px;
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 129%;
-	color: var(--main-black);
-	background: var(--background-2);
-	cursor: pointer;
-
-	&:hover {
-		color: var(--background-3);
-		background: var(--accent-hover);
-	}
-`;
-
 export const TableContainer = styled.div`
-	width: 630px;
 	border: 1px solid var(--accent-disabled);
 	border-radius: 8px;
 	overflow: hidden;
@@ -162,6 +93,28 @@ export const TableTh = styled.th`
 	font-size: 14px;
 	line-height: 129%;
 	color: var(--text-grey);
+	cursor: ${({ $reverse, $sortBy, type }) =>
+		$sortBy === type ? ($reverse ? 's-resize' : 'n-resize') : 'pointer'};
+
+	width: ${({ type }) => {
+		switch (type) {
+			case 'name':
+				return '296px';
+			case 'category':
+				return '230px';
+			case 'stock':
+				return '199px';
+			case 'suppliers':
+				return '226px';
+			case 'price':
+				return '163px';
+
+			default:
+				break;
+		}
+	}};
+
+	${({ type }) => type === 'action' && `cursor: default;`}
 
 	&:first-child {
 		padding-left: 0;
@@ -174,6 +127,7 @@ export const TableTh = styled.th`
 `;
 
 export const TableTd = styled.td`
+	height: 76px;
 	padding: 20px;
 	border-right: 1px solid var(--accent-disabled);
 	border-bottom: 1px solid var(--accent-disabled);
@@ -201,20 +155,62 @@ export const TableTr = styled.tr`
 	}
 `;
 
-export const UserInfo = styled.div`
+export const ButtonContainer = styled.div`
 	display: flex;
-	justify-content: flex-start;
 	align-items: center;
-	flex-wrap: nowrap;
 	gap: 8px;
 `;
 
-export const UserLogo = styled.img`
-	border-radius: 50%;
-	width: 36px;
-	height: 36px;
+export const ButtonAction = styled.button`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: transparent;
+	border: ${({ name }) => {
+		switch (name) {
+			case 'edit':
+				return '1px solid rgba(89, 177, 122, 0.5)';
+			case 'delete':
+				return '1px solid rgba(232, 80, 80, 0.5)';
+
+			default:
+				break;
+		}
+	}};
+	border-radius: 30px;
+	padding: 8px;
+	width: 32px;
+	height: 32px;
+	cursor: pointer;
+
+	&:hover {
+		background: ${({ name }) => {
+			switch (name) {
+				case 'edit':
+					return 'rgba(89, 177, 122, 0.1)';
+				case 'delete':
+					return 'rgba(232, 80, 80, 0.1)';
+
+				default:
+					break;
+			}
+		}};
+	}
 `;
 
-export const UserName = styled.span`
-	white-space: nowrap;
+export const IconAction = styled(Icon)`
+	fill: transparent;
+	width: 16px;
+	height: 16px;
+	stroke: ${({ name }) => {
+		switch (name) {
+			case 'edit':
+				return 'var(--accent)';
+			case 'delete':
+				return 'var(--accent-2)';
+
+			default:
+				break;
+		}
+	}};
 `;

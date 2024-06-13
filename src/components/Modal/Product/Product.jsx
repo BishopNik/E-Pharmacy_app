@@ -2,8 +2,9 @@
 
 import React, { useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
+import { useQueryClient, useMutation } from 'react-query';
 import ModalWindow from '../Modal';
-import { productSchema, categories, addProduct } from 'helpers';
+import { productSchema, categories, addProduct, editProductById } from 'helpers';
 import { MiniLoader } from 'components/Loader';
 import {
 	MainContainer,
@@ -29,6 +30,18 @@ function ProductModal({ isOpen, onRequestClose, productEdit }) {
 	const [category, setCategory] = useState('');
 	const cancelAddProduct = useRef(null);
 
+	const queryClient = useQueryClient();
+
+	const mutation = useMutation(productEdit ? editProductById : addProduct, {
+		onSuccess: () => {
+			queryClient.invalidateQueries('products');
+			setIsLoading(false);
+		},
+		onMutate: () => {
+			setIsLoading(true);
+		},
+	});
+
 	const handlerShowList = () => {
 		setIsShowList(!isShowList);
 	};
@@ -39,10 +52,8 @@ function ProductModal({ isOpen, onRequestClose, productEdit }) {
 	};
 
 	const handleFormSubmit = async values => {
-		setIsLoading(true);
-		const newProduct = await addProduct(values);
-		if (newProduct) onRequestClose();
-		setIsLoading(false);
+		const newProduct = await mutation.mutateAsync(values);
+		if (newProduct) handlerClose();
 	};
 
 	const handleCancel = () => {

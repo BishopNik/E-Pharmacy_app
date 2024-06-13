@@ -35,7 +35,7 @@ export const supplierSchema = Yup.object().shape({
 	address: Yup.string().required('This is a required field'),
 	company: Yup.string().min(2, 'Too Short!').required('This is a required field'),
 	date: Yup.date()
-		.min(startOfToday(), 'Date cannot be in the past')
+		// .min(startOfToday(), 'Date cannot be in the past')
 		.required('This is a required field'),
 	amount: Yup.number()
 

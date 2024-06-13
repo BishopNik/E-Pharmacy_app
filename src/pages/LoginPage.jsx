@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { Loader } from 'components/Loader';
 import {
@@ -19,15 +19,16 @@ import {
 	ErrorMess,
 	ButtonViewPassword,
 	IconViewPassword,
-} from 'components/styled.components/Login.styled';
-import { MainContext, login, loginSchema } from 'helpers';
+} from 'components/styled.components/LoginPage.styled';
+import { useMainContext } from 'hooks';
+import { login, loginSchema } from 'helpers';
 import logo from 'img/Logo/logo.png';
 import logo2x from 'img/Logo/logo@2x.png';
 import tabletka from 'img/Tabletka/tabletka.png';
 import tabletka2x from 'img/Tabletka/tabletka@2x.png';
 
 function LoginPage() {
-	const { isLoading, setIsLoading, setUserData } = useContext(MainContext);
+	const { isLoading, setIsLoading, setUserData } = useMainContext();
 	const [showPassword, setShowPassword] = useState(false);
 
 	const togglePasswordVisibility = () => {

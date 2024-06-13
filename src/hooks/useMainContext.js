@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState, useContext } from 'react';
 import { API, refresh } from 'helpers';
 
 export const MainContext = createContext();
@@ -70,4 +70,8 @@ export const Context = ({ children }) => {
 			{children}
 		</MainContext.Provider>
 	);
+};
+
+export const useMainContext = () => {
+	return useContext(MainContext);
 };

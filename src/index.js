@@ -3,17 +3,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import App from 'components/App';
-import { Context } from 'helpers';
+import { Context } from 'hooks';
 import { GlobalStyle } from 'helpers/GlobalStyle';
 import 'modern-normalize';
 import { Toaster } from 'react-hot-toast';
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<BrowserRouter basename='/'>
 			<Context>
-				<App />
+				<QueryClientProvider client={queryClient}>
+					<App />
+				</QueryClientProvider>
 				<Toaster
 					position='top-right'
 					reverseOrder={false}

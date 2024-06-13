@@ -2,7 +2,6 @@
 
 import styled from 'styled-components';
 import { Field, ErrorMessage } from 'formik';
-import DatePicker from 'react-datepicker';
 import Icon from 'components/Icon';
 import 'react-datepicker/dist/react-datepicker.css';
 

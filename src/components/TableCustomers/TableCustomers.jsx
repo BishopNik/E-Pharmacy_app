@@ -28,8 +28,8 @@ function TableCustomers({ dataCustomers }) {
 				</thead>
 				<tbody>
 					{dataCustomers &&
-						dataCustomers.map(({ image, name, email, spent }, idx) => (
-							<TableTr key={idx}>
+						dataCustomers.map(({ image, name, email, spent, _id }) => (
+							<TableTr key={_id}>
 								<TableTd>
 									<UserInfo>
 										<UserLogo src={image} alt='User logo' />

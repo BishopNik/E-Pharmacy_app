@@ -1,11 +1,11 @@
 /** @format */
 
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import DataView from 'components/DataView';
 import { Loader } from 'components/Loader';
 import TableCustomers from 'components/TableCustomers';
 import TableIncomeExpenses from 'components/TableIncomeExpenses';
-import { MainContext, fetchDataDashboard } from 'helpers';
+import { useDashboardData } from 'hooks';
 import {
 	StatisticsContainer,
 	DataContainer,
@@ -13,15 +13,7 @@ import {
 } from 'components/styled.components/DashboardPage.styled';
 
 function DashboardPage() {
-	const { isLoading, setIsLoading } = useContext(MainContext);
-	const [dataDashboard, setDataDashboard] = useState(null);
-
-	useEffect(() => {
-		setIsLoading(true);
-		fetchDataDashboard()
-			.then(data => setDataDashboard(data))
-			.finally(() => setIsLoading(false));
-	}, [setIsLoading]);
+	const { data: dataDashboard, isLoading } = useDashboardData();
 
 	return (
 		<DataContainer>

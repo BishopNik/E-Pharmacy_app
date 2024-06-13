@@ -1,15 +1,15 @@
 /** @format */
 
-import { Suspense, useContext } from 'react';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Loader } from 'components/Loader';
-import { MainContext } from 'helpers';
 import Header from 'components/Header';
 import SideMenu from 'components/SideMenu';
 import { Container } from './SharedLayout.styled';
+import { useMainContext } from 'hooks';
 
 const SharedLayout = () => {
-	const { userData } = useContext(MainContext);
+	const { userData } = useMainContext();
 
 	return userData ? (
 		<>

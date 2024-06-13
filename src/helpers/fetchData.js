@@ -3,10 +3,16 @@
 import { API } from './auth';
 import { toastError } from './toastwindow';
 
+const generateQueryString = params =>
+	Object.entries(params)
+		.filter(([key, value]) => value !== undefined && value !== null && value !== '')
+		.map(([key, value]) => `${key}=${value}`)
+		.join('&');
+
 //Dashboard
 export const fetchDataDashboard = async () => {
 	try {
-		const results = await API.get('/dashboard');
+		const results = await API.get(`/dashboard`);
 		return results.data;
 	} catch ({
 		response: {
@@ -18,9 +24,11 @@ export const fetchDataDashboard = async () => {
 };
 
 //Orders
-export const getOrders = async () => {
+export const getOrders = async params => {
+	const queryString = generateQueryString(params);
+
 	try {
-		const results = await API.get('/orders');
+		const results = await API.get(`/orders?${queryString}`);
 		return results.data;
 	} catch ({
 		response: {
@@ -33,9 +41,11 @@ export const getOrders = async () => {
 };
 
 //Customers
-export const getCustomers = async () => {
+export const getCustomers = async params => {
+	const queryString = generateQueryString(params);
+
 	try {
-		const results = await API.get('/customers');
+		const results = await API.get(`/customers?${queryString}`);
 		return results.data;
 	} catch ({
 		response: {
@@ -62,9 +72,11 @@ export const getCustomerById = async customerId => {
 };
 
 //Products
-export const getProducts = async () => {
+export const getProducts = async params => {
+	const queryString = generateQueryString(params);
+
 	try {
-		const results = await API.get('/products');
+		const results = await API.get(`/products?${queryString}`);
 		return results.data;
 	} catch ({
 		response: {
@@ -119,9 +131,11 @@ export const deleteProductById = async productId => {
 };
 
 //Suppliers
-export const getSuppliers = async () => {
+export const getSuppliers = async params => {
+	const queryString = generateQueryString(params);
+
 	try {
-		const results = await API.get('/suppliers');
+		const results = await API.get(`/suppliers?${queryString}`);
 		return results.data;
 	} catch ({
 		response: {
