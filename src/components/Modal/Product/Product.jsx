@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import { useQueryClient, useMutation } from 'react-query';
 import ModalWindow from '../Modal';
@@ -32,15 +32,20 @@ function ProductModal({ isOpen, onRequestClose, productEdit }) {
 
 	const queryClient = useQueryClient();
 
-	const mutation = useMutation(productEdit ? editProductById : addProduct, {
-		onSuccess: () => {
-			queryClient.invalidateQueries('products');
-			setIsLoading(false);
-		},
-		onMutate: () => {
-			setIsLoading(true);
-		},
-	});
+	const mutation = useMutation(
+		productEdit
+			? values => editProductById(values, productEdit._id)
+			: values => addProduct(values),
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries('products');
+				setIsLoading(false);
+			},
+			onMutate: () => {
+				setIsLoading(true);
+			},
+		}
+	);
 
 	const handlerShowList = () => {
 		setIsShowList(!isShowList);
@@ -68,6 +73,12 @@ function ProductModal({ isOpen, onRequestClose, productEdit }) {
 		setIsShowList(false);
 		onRequestClose();
 	};
+
+	useEffect(() => {
+		if (productEdit) {
+			setCategory(productEdit.category);
+		}
+	}, [productEdit]);
 
 	return (
 		<ModalWindow isOpen={isOpen} onRequestClose={handlerClose}>
