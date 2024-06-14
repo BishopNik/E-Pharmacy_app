@@ -3,10 +3,18 @@
 import styled from 'styled-components';
 
 export const TableContainer = styled.div`
-	width: 630px;
+	width: 335px;
 	border: 1px solid var(--accent-disabled);
 	border-radius: 8px;
 	overflow: hidden;
+
+	@media screen and (min-width: 768px) {
+		width: 704px;
+	}
+
+	@media screen and (min-width: 1440px) {
+		width: 630px;
+	}
 `;
 
 export const TableTitle = styled.h2`

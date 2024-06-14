@@ -18,5 +18,10 @@ export const DataContainer = styled.main`
 
 export const SectionTableContainer = styled.section`
 	display: flex;
+	flex-direction: column;
 	gap: 20px;
+
+	@media screen and (min-width: 1440px) {
+		flex-direction: row;
+	}
 `;

@@ -6,7 +6,6 @@ import { ButtonContainer, ButtonBox, Button } from './Pagination.styled';
 const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 	const getPages = () => {
 		let pages = [];
-
 		if (totalPages <= 5) {
 			pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 		} else {
@@ -30,7 +29,6 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 				];
 			}
 		}
-
 		return pages;
 	};
 
@@ -40,7 +38,6 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 		if (page >= 1 && page <= totalPages) {
 			onPageChange(page);
 		}
-		console.log(page);
 	};
 
 	return (

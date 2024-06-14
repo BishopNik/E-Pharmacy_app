@@ -11,10 +11,18 @@ export const Main = styled.li`
 		type === 'products' ? '1px solid var(--accent)' : '1px solid var(--accent-disabled)'};
 	border-radius: 8px;
 	padding: 14px 18px;
-	width: 240px;
+	width: 158px;
 	height: 108px;
 	background: var(--background-3);
 	color: var(--main-black);
+
+	@media screen and (min-width: 768px) {
+		width: 221px;
+	}
+
+	@media screen and (min-width: 1440px) {
+		width: 240px;
+	}
 `;
 
 export const DataTitleContainer = styled.ul`
