@@ -33,7 +33,7 @@ function Header({ children }) {
 		const res = await logout();
 		setIsLoading(false);
 		if (res) return;
-		setUserData(res);
+		setUserData(null);
 	};
 
 	const pageTitle = page => {

@@ -14,6 +14,7 @@ export const TableContainer = styled.div`
 	border: 1px solid var(--accent-disabled);
 	border-radius: 8px;
 	overflow: hidden;
+	margin-bottom: 20px;
 `;
 
 export const TableTitle = styled.h2`

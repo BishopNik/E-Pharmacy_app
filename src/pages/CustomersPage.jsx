@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useGetCustomers } from 'hooks';
 import { format } from 'date-fns';
+import { toastError } from 'helpers';
 import { Loader } from 'components/Loader';
 import Filter from 'components/Filter';
 import Pagination from 'components/Pagination';
@@ -79,6 +80,10 @@ function DataPage() {
 		if (totalPage) setCountPage(totalPage);
 	}, [data, totalPage]);
 
+	useEffect(() => {
+		if (data && data.length === 0 && !isLoading) toastError('Nothing found.');
+	}, [data, isLoading]);
+
 	return (
 		<Container>
 			<Filter
@@ -137,7 +142,7 @@ function DataPage() {
 					</thead>
 					<tbody>
 						{data &&
-							data.map(
+							data?.map(
 								({ name, image, address, email, phone, register_date, _id }) => (
 									<TableTr key={_id}>
 										<TableTd>

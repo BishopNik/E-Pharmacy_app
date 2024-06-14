@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useGetSuppliers } from 'hooks';
 import { format } from 'date-fns';
+import { toastError } from 'helpers';
 import { Loader } from 'components/Loader';
 import Filter from 'components/Filter';
 import { SupplierModal } from 'components/Modal';
@@ -93,6 +94,10 @@ function DataPage() {
 		if (totalPage) setCountPage(totalPage);
 	}, [data, totalPage]);
 
+	useEffect(() => {
+		if (data && data.length === 0 && !isLoading) toastError('Nothing found.');
+	}, [data, isLoading]);
+
 	return (
 		<Container>
 			<ContainerAction>
@@ -172,7 +177,7 @@ function DataPage() {
 					</thead>
 					<tbody>
 						{data &&
-							data.map(({ address, amount, company, date, name, status, _id }) => (
+							data?.map(({ address, amount, company, date, name, status, _id }) => (
 								<TableTr key={_id}>
 									<TableTd>{name}</TableTd>
 									<TableTd>{address}</TableTd>

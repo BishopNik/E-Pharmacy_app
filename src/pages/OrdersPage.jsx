@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useGetOrders } from 'hooks';
 import { format } from 'date-fns';
+import { toastError } from 'helpers';
 import { Loader } from 'components/Loader';
 import Filter from 'components/Filter';
 import Pagination from 'components/Pagination';
@@ -79,6 +80,10 @@ function OrdersPage() {
 		if (totalPage) setCountPage(totalPage);
 	}, [data, totalPage]);
 
+	useEffect(() => {
+		if (data && data.length === 0 && !isLoading) toastError('Nothing found.');
+	}, [data, isLoading]);
+
 	return (
 		<Container>
 			<Filter
@@ -145,7 +150,7 @@ function OrdersPage() {
 					</thead>
 					<tbody>
 						{data &&
-							data.map(
+							data?.map(
 								({
 									photo,
 									name,

@@ -38,7 +38,7 @@ function LoginPage() {
 	const handleSubmit = async data => {
 		setIsLoading(true);
 		const user = await login(data);
-		setUserData(user);
+		user && setUserData(user);
 		setIsLoading(false);
 	};
 
@@ -84,8 +84,12 @@ function LoginPage() {
 							<InputBox>
 								<InputContainer>
 									<InputField
-										error={errors?.email}
-										touched={touched.email && touched.email.toString()}
+										error={
+											errors?.email &&
+											touched.email &&
+											(errors?.email && touched.email).toString()
+										}
+										touched={touched.email && touched?.email.toString()}
 										name='email'
 										type='email'
 										placeholder='Email address'
@@ -94,7 +98,11 @@ function LoginPage() {
 								</InputContainer>
 								<InputContainer>
 									<InputField
-										error={errors?.password}
+										error={
+											errors?.password &&
+											touched.password &&
+											(errors?.password && touched.password).toString()
+										}
 										touched={touched.password && touched.password.toString()}
 										name='password'
 										type={showPassword ? 'text' : 'password'}

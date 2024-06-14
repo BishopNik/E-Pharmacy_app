@@ -38,6 +38,7 @@ export const refresh = async () => {
 export const logout = async () => {
 	try {
 		await API.get('/users/logout');
+		localStorage.setItem('token', '');
 		return null;
 	} catch ({
 		response: {
@@ -45,6 +46,7 @@ export const logout = async () => {
 		},
 	}) {
 		toastError('Logout error:', message);
+		return message;
 	}
 };
 

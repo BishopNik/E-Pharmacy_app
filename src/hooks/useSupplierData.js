@@ -10,7 +10,7 @@ export const useGetSuppliers = (sortBy, reverse, searchName, page, perPage) => {
 		queryKey: ['suppliers'],
 		queryFn: () => getSuppliers(sortBy, reverse, searchName, page, perPage),
 		onError: error => {
-			if (error.message === '401') {
+			if (error?.status === 401) {
 				setUserData(null);
 				window.location.reload();
 			}

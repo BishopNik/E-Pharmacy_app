@@ -40,12 +40,20 @@ export const Context = ({ children }) => {
 			}
 		);
 
-		(async () => {
-			setIsLoading(true);
-			const userData = await refresh();
-			setUserData(userData);
-			setIsLoading(false);
-		})();
+		const token = localStorage.getItem('token');
+		if (token) {
+			(async () => {
+				setIsLoading(true);
+				try {
+					const userData = await refresh();
+					if (userData.user) setUserData(userData);
+				} catch (error) {
+					console.error('Failed to refresh token:', error);
+				} finally {
+					setIsLoading(false);
+				}
+			})();
+		}
 
 		return () => {
 			API.interceptors.request.eject(requestInterceptor);

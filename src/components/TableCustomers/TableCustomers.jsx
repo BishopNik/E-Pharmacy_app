@@ -28,7 +28,7 @@ function TableCustomers({ dataCustomers }) {
 				</thead>
 				<tbody>
 					{dataCustomers &&
-						dataCustomers.map(({ image, name, email, spent, _id }) => (
+						dataCustomers?.map(({ image, name, email, spent, _id }) => (
 							<TableTr key={_id}>
 								<TableTd>
 									<UserInfo>

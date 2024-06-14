@@ -10,7 +10,7 @@ export const useDashboardData = () => {
 		queryKey: ['dashboardData'],
 		queryFn: fetchDataDashboard,
 		onError: error => {
-			if (error.message === '401') {
+			if (error?.status === 401) {
 				setUserData(null);
 				window.location.reload();
 			}

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useQueryClient, useMutation } from 'react-query';
-import { deleteProductById } from 'helpers';
+import { deleteProductById, toastError } from 'helpers';
 import { useGetProducts } from 'hooks';
 import { Loader, MiniLoader } from 'components/Loader';
 import Filter from 'components/Filter';
@@ -116,6 +116,14 @@ function DataPage() {
 		if (totalPage) setCountPage(totalPage);
 	}, [data, totalPage]);
 
+	useEffect(() => {
+		if (data && data.length === 0 && !isLoading) toastError('Nothing found.');
+	}, [data, isLoading]);
+
+	useEffect(() => {
+		if (data && data.length === 0 && !isLoading) toastError('Nothing found.');
+	}, [data, isLoading]);
+
 	return (
 		<Container>
 			<ContainerAction>
@@ -190,7 +198,7 @@ function DataPage() {
 					</thead>
 					<tbody>
 						{data &&
-							data.map(({ name, category, stock, suppliers, price, _id }) => (
+							data?.map(({ name, category, stock, suppliers, price, _id }) => (
 								<TableTr key={_id}>
 									<TableTd>{name}</TableTd>
 									<TableTd>{category}</TableTd>

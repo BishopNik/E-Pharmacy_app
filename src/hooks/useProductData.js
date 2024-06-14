@@ -10,7 +10,7 @@ export const useGetProducts = (sortBy, reverse, searchName, page, perPage) => {
 		queryKey: ['products'],
 		queryFn: () => getProducts(sortBy, reverse, searchName, page, perPage),
 		onError: error => {
-			if (error.message === '401') {
+			if (error?.status === 401) {
 				setUserData(null);
 				window.location.reload();
 			}
