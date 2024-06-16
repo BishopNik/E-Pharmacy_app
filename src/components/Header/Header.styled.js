@@ -4,13 +4,21 @@ import styled from 'styled-components';
 import Icon from 'components/Icon';
 
 export const HeaderMain = styled.header`
+	width: 100vw;
 	border-bottom: 1px solid var(--accent-disabled);
+`;
+
+export const HeaderBorder = styled.div`
 	width: 375px;
 	margin-left: auto;
 	margin-right: auto;
 
 	@media screen and (min-width: 768px) {
 		width: 768px;
+	}
+
+	@media screen and (min-width: 1024px) {
+		width: 1024px;
 	}
 
 	@media screen and (min-width: 1440px) {

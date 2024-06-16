@@ -77,6 +77,7 @@ function DataPage() {
 	const clearFilter = () => {
 		setSearchValue('');
 		setSearchName('');
+		setPage(1);
 	};
 
 	const handleChange = ({ target: { value } }) => {

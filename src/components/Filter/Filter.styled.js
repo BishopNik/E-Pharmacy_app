@@ -16,7 +16,7 @@ export const ContainerInput = styled.div`
 export const InputFilter = styled.input`
 	border: 1px solid rgba(29, 30, 33, 0.1);
 	border-radius: 60px;
-	width: 224px;
+	width: 215px;
 	height: 44px;
 	padding: 13px 18px;
 	box-shadow: 0 -1px 5px 0 rgba(71, 71, 71, 0.05);
@@ -25,6 +25,10 @@ export const InputFilter = styled.input`
 	font-size: 12px;
 	line-height: 150%;
 	color: rgba(29, 30, 33, 0.4);
+
+	@media screen and (min-width: 768px) {
+		width: 224px;
+	}
 `;
 
 export const ButtonFilter = styled.button`
@@ -34,17 +38,22 @@ export const ButtonFilter = styled.button`
 	gap: 8px;
 	border-radius: 60px;
 	border: none;
-	width: 116px;
+	width: 112px;
 	height: 44px;
 	background: var(--accent);
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 129%;
 	color: var(--background-3);
 	cursor: pointer;
 
 	&:hover {
 		background: var(--accent-hover);
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 116px;
+		font-size: 14px;
 	}
 `;
 

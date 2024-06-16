@@ -18,6 +18,8 @@ import {
 	UserInfo,
 	UserName,
 	UserLogo,
+	UserAddress,
+	UserDate,
 	Status,
 } from 'components/styled.components/OrdersPage.styled';
 
@@ -56,6 +58,7 @@ function OrdersPage() {
 	const clearFilter = () => {
 		setSearchValue('');
 		setSearchName('');
+		setPage(1);
 	};
 
 	const handleChange = ({ target: { value } }) => {
@@ -168,9 +171,13 @@ function OrdersPage() {
 												<UserName>{name}</UserName>
 											</UserInfo>
 										</TableTd>
-										<TableTd>{address}</TableTd>
+										<TableTd>
+											<UserAddress>{address}</UserAddress>
+										</TableTd>
 										<TableTd>{products}</TableTd>
-										<TableTd>{formatDate(order_date)}</TableTd>
+										<TableTd>
+											<UserDate>{formatDate(order_date)}</UserDate>
+										</TableTd>
 										<TableTd>
 											{price.toLocaleString('en-US', {
 												minimumFractionDigits: 2,
