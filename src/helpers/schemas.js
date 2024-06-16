@@ -1,7 +1,7 @@
 /** @format */
 
 import * as Yup from 'yup';
-import { startOfToday } from 'date-fns';
+// import { startOfToday } from 'date-fns';
 
 const emailRegex = RegExp(/^[A-Z|a-z0-9!#$%&._%+-/=?^]+@[A-Z|a-z0-9.-]+\.[A-Z|a-z]{2,4}$/);
 const passwordRegex = RegExp(/^[A-Z|a-z0-9!#$%&._%+-/=?^]{0,100}$/);

@@ -11,7 +11,7 @@ export const Main = styled.li`
 		type === 'products' ? '1px solid var(--accent)' : '1px solid var(--accent-disabled)'};
 	border-radius: 8px;
 	padding: 14px 18px;
-	width: 158px;
+	width: 157px;
 	height: 108px;
 	background: var(--background-3);
 	color: var(--main-black);

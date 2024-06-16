@@ -1,7 +1,6 @@
 /** @format */
 
 import React from 'react';
-import EllipsisText from 'react-ellipsis-text';
 import {
 	TableContainer,
 	TableTitle,
@@ -32,9 +31,7 @@ function TableIncomeExpenses({ dataIncomeExpenses }) {
 								<TableTdType>
 									<TypeTransaction type={type}>{type}</TypeTransaction>
 								</TableTdType>
-								<TableTdName>
-									<EllipsisText text={name} length={40} />
-								</TableTdName>
+								<TableTdName>{name}</TableTdName>
 								<TableTdSum>
 									<SumColor type={type}>
 										{amount > 0 ? '+' : null}

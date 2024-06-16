@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { logout } from 'helpers';
+import { useMainContext } from 'hooks';
 import logo from 'img/Logo/logo-main.png';
 import logo2x from 'img/Logo/logo-main@2x.png';
 import {
@@ -15,15 +17,16 @@ import {
 	HeaderTitleInfoSplit,
 	HeaderLogout,
 	HeaderIconLogout,
+	HeaderBurgerMenu,
 } from './Header.styled';
-import { logout } from 'helpers';
-import { useMainContext } from 'hooks';
 
 function Header({ children }) {
 	const {
 		userData: { user },
 		setIsLoading,
 		setUserData,
+		isOpen,
+		setIsOpen,
 	} = useMainContext();
 	const location = useLocation();
 	const page = location.pathname;
@@ -34,6 +37,10 @@ function Header({ children }) {
 		setIsLoading(false);
 		if (res) return;
 		setUserData(null);
+	};
+
+	const handlerOpenMenu = () => {
+		setIsOpen(!isOpen);
 	};
 
 	const pageTitle = page => {
@@ -60,6 +67,7 @@ function Header({ children }) {
 	return (
 		<HeaderMain>
 			<HeaderContainer>
+				<HeaderBurgerMenu name='sidemenu' onClick={handlerOpenMenu} />
 				<HeaderLogo
 					srcSet={`${logo} 1x, ${logo2x} 2x`}
 					src={logo}

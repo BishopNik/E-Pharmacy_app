@@ -11,6 +11,7 @@ export const Context = ({ children }) => {
 	const [error, setError] = useState(false);
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
+	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
 		if (!userData) return;
@@ -73,6 +74,8 @@ export const Context = ({ children }) => {
 				setPage,
 				totalPages,
 				setTotalPages,
+				isOpen,
+				setIsOpen,
 			}}
 		>
 			{children}

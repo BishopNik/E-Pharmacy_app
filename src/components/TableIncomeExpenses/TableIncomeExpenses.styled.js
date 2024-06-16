@@ -28,19 +28,27 @@ export const TableTitle = styled.h2`
 
 export const TableBody = styled.table`
 	width: 100%;
-	padding: 0 20px;
+	padding: 0 14px;
 	background: var(--background-3);
 	border-spacing: 0;
+
+	@media screen and (min-width: 768px) {
+		padding: 0 20px;
+	}
 `;
 
 export const TableTh = styled.th`
-	padding: 20px 0;
+	padding: 14px 0;
 	text-align: left;
 
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 129%;
 	color: var(--text-grey);
+
+	@media screen and (min-width: 768px) {
+		padding: 20px 0;
+	}
 `;
 
 export const TableTr = styled.tr`
@@ -49,37 +57,51 @@ export const TableTr = styled.tr`
 `;
 
 export const TableTdType = styled.td`
-	padding: 19px 0;
+	padding: 14px 14px 14px 0;
 	border-top: 1px solid var(--accent-disabled);
 	text-align: left;
+	vertical-align: top;
 
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 112%;
 	color: var(--main-black);
+
+	@media screen and (min-width: 768px) {
+		padding: 19px 0;
+	}
 `;
 
 export const TableTdName = styled.td`
-	padding: 19px 20px;
+	padding: 14px 0 14px 14px;
 	border-top: 1px solid var(--accent-disabled);
 	text-align: left;
 
 	font-weight: 500;
-	font-size: 16px;
+	font-size: 12px;
 	line-height: 112%;
 	color: var(--main-black);
-	white-space: nowrap;
+
+	@media screen and (min-width: 768px) {
+		padding: 19px 0 19px 20px;
+		font-size: 16px;
+	}
 `;
 
 export const TableTdSum = styled.td`
-	padding: 19px 20px;
+	padding: 14px 0 14px 14px;
 	border-top: 1px solid var(--accent-disabled);
 	text-align: right;
 
 	font-weight: 500;
-	font-size: 16px;
+	font-size: 12px;
 	line-height: 112%;
 	color: var(--main-black);
+
+	@media screen and (min-width: 768px) {
+		font-size: 16px;
+		padding: 19px 0 19px 20px;
+	}
 `;
 
 export const TypeTransaction = styled.p`
@@ -112,9 +134,13 @@ export const TypeTransaction = styled.p`
 		}
 	}};
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 12px;
 	letter-spacing: -0.05em;
 	text-align: center;
+
+	@media screen and (min-width: 768px) {
+		font-size: 14px;
+	}
 `;
 
 export const SumColor = styled.p`

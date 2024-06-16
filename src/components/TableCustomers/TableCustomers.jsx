@@ -1,7 +1,6 @@
 /** @format */
 
 import React from 'react';
-import EllipsisText from 'react-ellipsis-text';
 import {
 	TableContainer,
 	TableTitle,
@@ -11,6 +10,7 @@ import {
 	TableTr,
 	UserInfo,
 	UserName,
+	UserEmail,
 	UserLogo,
 } from './TableCustomers.styled';
 
@@ -21,24 +21,24 @@ function TableCustomers({ dataCustomers }) {
 			<TableBody>
 				<thead>
 					<TableTr>
-						<TableTh>Name</TableTh>
-						<TableTh>Email</TableTh>
-						<TableTh>Spent</TableTh>
+						<TableTh type={'name'}>Name</TableTh>
+						<TableTh type={'email'}>Email</TableTh>
+						<TableTh type={'spent'}>Spent</TableTh>
 					</TableTr>
 				</thead>
 				<tbody>
 					{dataCustomers &&
 						dataCustomers?.map(({ image, name, email, spent, _id }) => (
 							<TableTr key={_id}>
-								<TableTd>
+								<TableTd type={'name'}>
 									<UserInfo>
 										<UserLogo src={image} alt='User logo' />
-										<UserName>
-											<EllipsisText text={name} length={16} />
-										</UserName>
+										<UserName>{name}</UserName>
 									</UserInfo>
 								</TableTd>
-								<TableTd>{email}</TableTd>
+								<TableTd>
+									<UserEmail>{email}</UserEmail>
+								</TableTd>
 								<TableTd>
 									{spent.toLocaleString('en-US', {
 										minimumFractionDigits: 2,
