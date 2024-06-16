@@ -43,6 +43,7 @@ export const HeaderBurgerMenu = styled(Icon)`
 	height: 32px;
 	stroke: var(--main-black);
 	margin-right: 20px;
+	cursor: pointer;
 
 	@media screen and (min-width: 768px) {
 		margin-right: 16px;

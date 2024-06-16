@@ -19,6 +19,7 @@ import {
 	ErrorMess,
 	ButtonViewPassword,
 	IconViewPassword,
+	IconDecor,
 } from 'components/styled.components/LoginPage.styled';
 import { useMainContext } from 'hooks';
 import { login, loginSchema } from 'helpers';
@@ -130,6 +131,7 @@ function LoginPage() {
 					)}
 				</Formik>
 			</MainContainer>
+			<IconDecor name='decor' />
 		</Main>
 	);
 }

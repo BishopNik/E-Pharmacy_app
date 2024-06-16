@@ -5,6 +5,7 @@ import { Field, ErrorMessage } from 'formik';
 import Icon from 'components/Icon';
 
 export const Main = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -15,6 +16,7 @@ export const Main = styled.div`
 	margin: 0 auto;
 	padding: 24px 20px;
 	background: var(--background-2);
+	overflow: hidden;
 
 	@media screen and (min-width: 768px) {
 		min-width: 768px;
@@ -149,6 +151,10 @@ export const InputField = styled(Field)`
 		color: rgba(29, 30, 33, 0.4);
 	}
 
+	&:focus {
+		outline: 1px solid lightblue;
+	}
+
 	@media screen and (min-width: 768px) {
 		width: 323px;
 	}
@@ -210,4 +216,23 @@ export const IconViewPassword = styled(Icon)`
 	width: 18px;
 	height: 18px;
 	fill: transparent;
+`;
+
+export const IconDecor = styled(Icon)`
+	position: absolute;
+	width: 464px;
+	height: 345px;
+	top: 666px;
+	right: -206px;
+	fill: transparent;
+
+	@media screen and (min-width: 768px) {
+		top: 761px;
+		right: -198px;
+	}
+
+	@media screen and (min-width: 1440px) {
+		top: 543px;
+		right: -185px;
+	}
 `;
