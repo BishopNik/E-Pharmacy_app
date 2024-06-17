@@ -159,7 +159,6 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 										onClick={handleFieldClick}
 										readOnly
 									/>
-									{console.log(startDate)}
 									<DatePicker
 										selected={startDate}
 										openToDate={startDate ? new Date(startDate) : ''}

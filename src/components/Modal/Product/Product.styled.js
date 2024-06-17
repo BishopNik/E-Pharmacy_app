@@ -5,16 +5,27 @@ import { Field, ErrorMessage } from 'formik';
 import Icon from 'components/Icon';
 
 export const MainContainer = styled.div`
-	width: 536px;
-	padding: 40px;
+	width: 335px;
+	padding: 40px 20px;
+
+	@media screen and (min-width: 768px) {
+		width: 536px;
+		padding: 40px;
+	}
 `;
 
 export const ModalTitle = styled.h1`
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	font-weight: 600;
-	font-size: 24px;
-	line-height: 117%;
+	font-size: 20px;
+	line-height: 120%;
 	color: var(--main-black);
+
+	@media screen and (min-width: 768px) {
+		margin-bottom: 40px;
+		font-size: 24px;
+		line-height: 117%;
+	}
 `;
 
 export const FormFieldsContainer = styled.div`
@@ -27,9 +38,13 @@ export const FormFieldsContainer = styled.div`
 
 export const FieldContainer = styled.label`
 	position: relative;
-	width: 224px;
+	width: 295px;
 	height: 44px;
 	background: var(--background-3);
+
+	@media screen and (min-width: 768px) {
+		width: 224px;
+	}
 `;
 
 export const FieldStyled = styled(Field)`
@@ -60,6 +75,10 @@ export const FieldStyled = styled(Field)`
 	&::placeholder {
 		color: var(--text-grey);
 	}
+
+	&:focus {
+		outline: 1px solid lightblue;
+	}
 `;
 
 export const CloseButton = styled.button`
@@ -69,20 +88,30 @@ export const CloseButton = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 26px;
-	height: 26px;
+	width: 24px;
+	height: 24px;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
+
+	@media screen and (min-width: 768px) {
+		width: 26px;
+		height: 26px;
+	}
 `;
 
 export const IconClose = styled(Icon)`
-	width: 26px;
-	height: 26px;
+	width: 24px;
+	height: 24px;
 	stroke: var(--main-black);
 
 	&:hover {
 		stroke: var(--accent-hover);
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 26px;
+		height: 26px;
 	}
 `;
 
@@ -98,17 +127,23 @@ export const AddButton = styled.button`
 	align-items: center;
 	border-radius: 60px;
 	border: none;
-	width: 133px;
+	width: 146px;
 	height: 44px;
 	background: var(--accent);
 	font-weight: 500;
-	font-size: 14px;
-	line-height: 129%;
+	font-size: 12px;
+	line-height: 150%;
 	color: var(--background-3);
 	cursor: pointer;
 
 	&:hover {
 		background: var(--accent-hover);
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 133px;
+		font-size: 14px;
+		line-height: 129%;
 	}
 `;
 
@@ -118,18 +153,24 @@ export const CancelButton = styled.button`
 	align-items: center;
 	border-radius: 60px;
 	border: none;
-	width: 133px;
+	width: 140px;
 	height: 44px;
 	background: rgba(29, 30, 33, 0.1);
 	font-weight: 500;
-	font-size: 14px;
-	line-height: 129%;
+	font-size: 12px;
+	line-height: 150%;
 	color: rgba(29, 30, 33, 0.4);
 	cursor: pointer;
 
 	&:hover {
 		background: var(--accent-hover);
 		color: var(--background-3);
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 133px;
+		font-size: 14px;
+		line-height: 129%;
 	}
 `;
 
@@ -138,11 +179,14 @@ export const ErrorMsg = styled(ErrorMessage)`
 	left: 20px;
 	bottom: 35px;
 	font-weight: 400;
-	font-size: 12px;
+	font-size: 10px;
 	line-height: 150%;
 	color: red;
-
 	background: var(--background-3);
+
+	@media screen and (min-width: 768px) {
+		font-size: 12px;
+	}
 `;
 
 export const CategoryListContainer = styled.div`
@@ -150,10 +194,14 @@ export const CategoryListContainer = styled.div`
 	top: 8px;
 	z-index: 100;
 	border-radius: 15px;
-	width: 224px;
+	width: 295px;
 	height: 140px;
 	padding: 13px 8px 13px 18px;
 	background: var(--accent);
+
+	@media screen and (min-width: 768px) {
+		width: 224px;
+	}
 `;
 
 export const CategoryList = styled.ul`
@@ -161,7 +209,7 @@ export const CategoryList = styled.ul`
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 6px;
-	width: 198px;
+	width: 269px;
 	height: 114px;
 	overflow-y: scroll;
 
@@ -176,6 +224,10 @@ export const CategoryList = styled.ul`
 	}
 	&::-webkit-scrollbar-thumb:hover {
 		background-color: rgba(255, 255, 255, 0.8);
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 198px;
 	}
 `;
 

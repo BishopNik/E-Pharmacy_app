@@ -2,20 +2,32 @@
 
 import styled from 'styled-components';
 import { Field, ErrorMessage } from 'formik';
+import DatePicker from 'react-datepicker';
 import Icon from 'components/Icon';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export const MainContainer = styled.div`
-	width: 536px;
-	padding: 40px;
+	width: 335px;
+	padding: 40px 20px;
+
+	@media screen and (min-width: 768px) {
+		width: 536px;
+		padding: 40px;
+	}
 `;
 
 export const ModalTitle = styled.h1`
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	font-weight: 600;
-	font-size: 24px;
-	line-height: 117%;
+	font-size: 20px;
+	line-height: 120%;
 	color: var(--main-black);
+
+	@media screen and (min-width: 768px) {
+		margin-bottom: 40px;
+		font-size: 24px;
+		line-height: 117%;
+	}
 `;
 
 export const FormFieldsContainer = styled.div`
@@ -28,9 +40,13 @@ export const FormFieldsContainer = styled.div`
 
 export const FieldContainer = styled.label`
 	position: relative;
-	width: 224px;
+	width: 295px;
 	height: 44px;
 	background: var(--background-3);
+
+	@media screen and (min-width: 768px) {
+		width: 224px;
+	}
 `;
 
 export const FieldStyled = styled(Field)`
@@ -67,6 +83,10 @@ export const FieldStyled = styled(Field)`
 	&::placeholder {
 		color: var(--text-grey);
 	}
+
+	&:focus {
+		outline: 1px solid lightblue;
+	}
 `;
 
 export const CloseButton = styled.button`
@@ -76,20 +96,30 @@ export const CloseButton = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 26px;
-	height: 26px;
+	width: 24px;
+	height: 24px;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
+
+	@media screen and (min-width: 768px) {
+		width: 26px;
+		height: 26px;
+	}
 `;
 
 export const IconClose = styled(Icon)`
-	width: 26px;
-	height: 26px;
+	width: 24px;
+	height: 24px;
 	stroke: var(--main-black);
 
 	&:hover {
 		stroke: var(--accent-hover);
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 26px;
+		height: 26px;
 	}
 `;
 
@@ -105,17 +135,23 @@ export const AddButton = styled.button`
 	align-items: center;
 	border-radius: 60px;
 	border: none;
-	width: 133px;
+	width: 146px;
 	height: 44px;
 	background: var(--accent);
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 129%;
 	color: var(--background-3);
 	cursor: pointer;
 
 	&:hover {
 		background: var(--accent-hover);
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 133px;
+		font-size: 14px;
+		line-height: 129%;
 	}
 `;
 
@@ -125,7 +161,7 @@ export const CancelButton = styled.button`
 	align-items: center;
 	border-radius: 60px;
 	border: none;
-	width: 133px;
+	width: 140px;
 	height: 44px;
 	background: rgba(29, 30, 33, 0.1);
 	font-weight: 500;
@@ -138,6 +174,12 @@ export const CancelButton = styled.button`
 		background: var(--accent-hover);
 		color: var(--background-3);
 	}
+
+	@media screen and (min-width: 768px) {
+		width: 133px;
+		font-size: 14px;
+		line-height: 129%;
+	}
 `;
 
 export const ErrorMsg = styled(ErrorMessage)`
@@ -148,8 +190,11 @@ export const ErrorMsg = styled(ErrorMessage)`
 	font-size: 12px;
 	line-height: 150%;
 	color: red;
-
 	background: var(--background-3);
+
+	@media screen and (min-width: 768px) {
+		font-size: 12px;
+	}
 `;
 
 export const StatusList = styled.ul`
@@ -162,9 +207,13 @@ export const StatusList = styled.ul`
 	gap: 6px;
 	border-radius: 15px;
 	border: 1px solid var(--accent);
-	width: 224px;
+	width: 295px;
 	padding: 13px 18px;
 	background: var(--background-3);
+
+	@media screen and (min-width: 768px) {
+		width: 224px;
+	}
 `;
 
 export const StatusItem = styled.li`
