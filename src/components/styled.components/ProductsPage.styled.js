@@ -292,13 +292,13 @@ export const ButtonAction = styled.button`
 	}};
 	border-radius: 30px;
 	padding: 8px;
-	width: 32px;
-	height: 32px;
+	width: 28px;
+	height: 28px;
 	cursor: pointer;
 
 	@media screen and (min-width: 768px) {
-		width: 28px;
-		height: 28px;
+		width: 32px;
+		height: 32px;
 	}
 
 	&:hover {
