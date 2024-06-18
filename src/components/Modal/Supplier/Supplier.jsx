@@ -33,6 +33,7 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 	const [startDate, setStartDate] = useState(supplierEdit?.date);
 	const cancelAddSupplier = useRef(null);
 	const datePickerRef = useRef(null);
+	const listRef = useRef(null);
 
 	const queryClient = useQueryClient();
 
@@ -96,6 +97,21 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 			setStartDate(supplierEdit?.date);
 		}
 	}, [supplierEdit]);
+
+	useEffect(() => {
+		if (!isShowList) return;
+		const handlerOnCloseList = ({ target }) => {
+			if (listRef.current && !listRef.current.contains(target)) {
+				setIsShowList(false);
+			}
+		};
+
+		window.addEventListener('click', handlerOnCloseList);
+
+		return () => {
+			window.removeEventListener('click', handlerOnCloseList);
+		};
+	}, [isShowList]);
 
 	return (
 		<ModalWindow isOpen={isOpen} onRequestClose={handlerClose}>
@@ -183,7 +199,7 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 									/>
 									<ErrorMsg name='amount' component='span' />
 								</FieldContainer>
-								<FieldContainer>
+								<FieldContainer ref={listRef}>
 									<FieldStyled
 										$statusError={!errors.status && touched.status}
 										onClick={handlerShowList}

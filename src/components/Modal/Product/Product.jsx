@@ -29,6 +29,7 @@ function ProductModal({ isOpen, onRequestClose, productEdit }) {
 	const [isShowList, setIsShowList] = useState(false);
 	const [category, setCategory] = useState('');
 	const cancelAddProduct = useRef(null);
+	const listRef = useRef(null);
 
 	const queryClient = useQueryClient();
 
@@ -80,6 +81,21 @@ function ProductModal({ isOpen, onRequestClose, productEdit }) {
 		}
 	}, [productEdit]);
 
+	useEffect(() => {
+		if (!isShowList) return;
+		const handlerOnCloseList = ({ target }) => {
+			if (listRef.current && !listRef.current.contains(target)) {
+				setIsShowList(false);
+			}
+		};
+
+		window.addEventListener('click', handlerOnCloseList);
+
+		return () => {
+			window.removeEventListener('click', handlerOnCloseList);
+		};
+	}, [isShowList]);
+
 	return (
 		<ModalWindow isOpen={isOpen} onRequestClose={handlerClose}>
 			<MainContainer>
@@ -112,7 +128,7 @@ function ProductModal({ isOpen, onRequestClose, productEdit }) {
 									/>
 									<ErrorMsg name='name' component='span' />
 								</FieldContainer>
-								<FieldContainer>
+								<FieldContainer ref={listRef}>
 									<FieldStyled
 										$statusError={!errors.category && touched.category}
 										onClick={handlerShowList}
