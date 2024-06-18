@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useGetOrders } from 'hooks';
 import { format } from 'date-fns';
-import { toastError } from 'helpers';
+import { toastError, handleChangeSortingBy } from 'helpers';
 import { Loader } from 'components/Loader';
 import Filter from 'components/Filter';
 import Pagination from 'components/Pagination';
@@ -21,6 +21,7 @@ import {
 	UserAddress,
 	UserDate,
 	Status,
+	IconSort,
 } from 'components/styled.components/OrdersPage.styled';
 
 function OrdersPage() {
@@ -69,12 +70,6 @@ function OrdersPage() {
 		setPage(newPage);
 	};
 
-	const handleChangeSortingBy = value => {
-		setSortBy(value);
-		reverse ? setReverse(0) : setReverse(1);
-		setPage(1);
-	};
-
 	useEffect(() => {
 		refetch();
 	}, [page, sortBy, reverse, searchName, refetch]);
@@ -103,50 +98,134 @@ function OrdersPage() {
 						<TableTr>
 							<TableTh
 								type={'name'}
-								onClick={() => handleChangeSortingBy('name')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'name',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'name'}
+								/>
 								User Info
 							</TableTh>
 							<TableTh
 								type={'address'}
-								onClick={() => handleChangeSortingBy('address')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'address',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'address'}
+								/>
 								Address
 							</TableTh>
 							<TableTh
 								type={'products'}
-								onClick={() => handleChangeSortingBy('products')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'products',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'products'}
+								/>
 								Products
 							</TableTh>
 							<TableTh
 								type={'order_date'}
-								onClick={() => handleChangeSortingBy('order_date')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'order_date',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'order_date'}
+								/>
 								Order date
 							</TableTh>
 							<TableTh
 								type={'price'}
-								onClick={() => handleChangeSortingBy('price')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'price',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'price'}
+								/>
 								Price
 							</TableTh>
 							<TableTh
 								type={'status'}
-								onClick={() => handleChangeSortingBy('status')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'status',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'status'}
+								/>
 								Status
 							</TableTh>
 						</TableTr>

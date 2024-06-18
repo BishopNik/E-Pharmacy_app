@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useGetSuppliers } from 'hooks';
 import { format } from 'date-fns';
-import { toastError } from 'helpers';
+import { toastError, handleChangeSortingBy } from 'helpers';
 import { Loader } from 'components/Loader';
 import Filter from 'components/Filter';
 import { SupplierModal } from 'components/Modal';
@@ -27,6 +27,7 @@ import {
 	DateContainer,
 	AmountContainer,
 	StatusContainer,
+	IconSort,
 } from 'components/styled.components/SuppliersPage.styled';
 
 function DataPage() {
@@ -87,12 +88,6 @@ function DataPage() {
 		setEditSupplier(sup);
 	};
 
-	const handleChangeSortingBy = value => {
-		setSortBy(value);
-		reverse ? setReverse(0) : setReverse(1);
-		setPage(1);
-	};
-
 	useEffect(() => {
 		refetch();
 	}, [page, sortBy, reverse, searchName, refetch]);
@@ -133,50 +128,134 @@ function DataPage() {
 						<TableTr>
 							<TableTh
 								type={'name'}
-								onClick={() => handleChangeSortingBy('name')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'name',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'name'}
+								/>
 								Supplier Info
 							</TableTh>
 							<TableTh
 								type={'address'}
-								onClick={() => handleChangeSortingBy('address')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'address',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'address'}
+								/>
 								Address
 							</TableTh>
 							<TableTh
 								type={'company'}
-								onClick={() => handleChangeSortingBy('company')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'company',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'company'}
+								/>
 								Company
 							</TableTh>
 							<TableTh
 								type={'date'}
-								onClick={() => handleChangeSortingBy('date')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'date',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'date'}
+								/>
 								Delivery date
 							</TableTh>
 							<TableTh
 								type={'amount'}
-								onClick={() => handleChangeSortingBy('amount')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'amount',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'amount'}
+								/>
 								Amount
 							</TableTh>
 							<TableTh
 								type={'status'}
-								onClick={() => handleChangeSortingBy('status')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'status',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'status'}
+								/>
 								Status
 							</TableTh>
 							<TableTh type={'action'}>Action</TableTh>

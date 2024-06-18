@@ -7,3 +7,4 @@ export * from './auth.js';
 export * from './fetchData.js';
 export * from './handleApiError.js';
 export * from './getResource.js';
+export * from './sortingUtils';

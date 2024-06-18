@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useQueryClient, useMutation } from 'react-query';
-import { deleteProductById, toastError } from 'helpers';
+import { deleteProductById, toastError, handleChangeSortingBy } from 'helpers';
 import { useGetProducts } from 'hooks';
 import { Loader, MiniLoader } from 'components/Loader';
 import Filter from 'components/Filter';
@@ -30,6 +30,7 @@ import {
 	StockContainer,
 	SupplersContainer,
 	PriceContainer,
+	IconSort,
 } from 'components/styled.components/ProductsPage.styled';
 
 function DataPage() {
@@ -91,12 +92,6 @@ function DataPage() {
 
 	const handlePageChange = newPage => {
 		setPage(newPage);
-	};
-
-	const handleChangeSortingBy = value => {
-		setSortBy(value);
-		reverse ? setReverse(0) : setReverse(1);
-		setPage(1);
 	};
 
 	const handlerAction = async (name, product) => {
@@ -161,42 +156,112 @@ function DataPage() {
 						<TableTr>
 							<TableTh
 								type={'name'}
-								onClick={() => handleChangeSortingBy('name')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'name',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'name'}
+								/>
 								Product Info
 							</TableTh>
 							<TableTh
 								type={'category'}
-								onClick={() => handleChangeSortingBy('category')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'category',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'category'}
+								/>
 								Category
 							</TableTh>
 							<TableTh
 								type={'stock'}
-								onClick={() => handleChangeSortingBy('stock')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'stock',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'stock'}
+								/>
 								Stock
 							</TableTh>
 							<TableTh
 								type={'suppliers'}
-								onClick={() => handleChangeSortingBy('suppliers')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'suppliers',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'suppliers'}
+								/>
 								Suppliers
 							</TableTh>
 							<TableTh
 								type={'price'}
-								onClick={() => handleChangeSortingBy('price')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'price',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'price'}
+								/>
 								Price
 							</TableTh>
 							<TableTh type={'action'}>Action</TableTh>

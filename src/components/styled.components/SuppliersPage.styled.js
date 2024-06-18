@@ -130,6 +130,7 @@ export const TableBody = styled.table`
 `;
 
 export const TableTh = styled.th`
+	position: relative;
 	padding: 14px;
 	border-right: 1px solid var(--accent-disabled);
 	border-bottom: 1px solid var(--accent-disabled);
@@ -417,5 +418,24 @@ export const StatusContainer = styled.div`
 
 	@media screen and (min-width: 1440px) {
 		width: 148px;
+	}
+`;
+
+export const IconSort = styled(Icon)`
+	position: absolute;
+	right: 0;
+	width: 16px;
+	height: 16px;
+	stroke: var(--main-black);
+	fill: transparent;
+	display: ${({ $sortBy }) => ($sortBy ? 'block' : 'none')};
+	transform: ${({ $isRevers }) => ($isRevers ? 'rotateX(0deg)' : 'rotateX(180deg)')};
+
+	@media screen and (min-width: 768px) {
+		right: 10px;
+	}
+
+	@media screen and (min-width: 1440px) {
+		right: 20px;
 	}
 `;

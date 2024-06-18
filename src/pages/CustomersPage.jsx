@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useGetCustomers } from 'hooks';
 import { format } from 'date-fns';
-import { toastError } from 'helpers';
+import { toastError, handleChangeSortingBy } from 'helpers';
 import { Loader } from 'components/Loader';
 import Filter from 'components/Filter';
 import Pagination from 'components/Pagination';
@@ -21,7 +21,7 @@ import {
 	UserLogo,
 	AddressContainer,
 	PhoneContainer,
-	DateContainer,
+	IconSort,
 } from 'components/styled.components/CustomersPage.styled';
 
 function DataPage() {
@@ -70,12 +70,6 @@ function DataPage() {
 		setPage(newPage);
 	};
 
-	const handleChangeSortingBy = value => {
-		setSortBy(value);
-		reverse ? setReverse(0) : setReverse(1);
-		setPage(1);
-	};
-
 	useEffect(() => {
 		refetch();
 	}, [page, sortBy, reverse, searchName, refetch]);
@@ -104,42 +98,112 @@ function DataPage() {
 						<TableTr>
 							<TableTh
 								type={'name'}
-								onClick={() => handleChangeSortingBy('name')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'name',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'name'}
+								/>
 								User Info
 							</TableTh>
 							<TableTh
 								type={'email'}
-								onClick={() => handleChangeSortingBy('email')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'email',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'email'}
+								/>
 								Email
 							</TableTh>
 							<TableTh
 								type={'address'}
-								onClick={() => handleChangeSortingBy('address')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'address',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'address'}
+								/>
 								Address
 							</TableTh>
 							<TableTh
 								type={'phone'}
-								onClick={() => handleChangeSortingBy('phone')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'phone',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'phone'}
+								/>
 								Phone
 							</TableTh>
 							<TableTh
 								type={'register_date'}
-								onClick={() => handleChangeSortingBy('register_date')}
+								onClick={() =>
+									handleChangeSortingBy(
+										'register_date',
+										sortBy,
+										setSortBy,
+										reverse,
+										setReverse,
+										setPage
+									)
+								}
 								$reverse={reverse}
 								$sortBy={sortBy}
 							>
+								<IconSort
+									name='menu'
+									$isRevers={reverse === 0}
+									$sortBy={sortBy === 'register_date'}
+								/>
 								Register date
 							</TableTh>
 						</TableTr>
