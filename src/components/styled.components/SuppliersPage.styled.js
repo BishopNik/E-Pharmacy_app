@@ -36,6 +36,10 @@ export const ContainerAction = styled.ul`
 		width: 728px;
 	}
 
+	@media screen and (min-width: 1024px) {
+		width: 940px;
+	}
+
 	@media screen and (min-width: 1440px) {
 		width: 1280px;
 	}
