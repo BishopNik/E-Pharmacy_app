@@ -176,8 +176,8 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 										readOnly
 									/>
 									<DatePicker
-										selected={startDate}
-										openToDate={startDate ? new Date(startDate) : ''}
+										selected={startDate ? new Date(supplierEdit?.date) : ''}
+										openToDate={startDate ? new Date(supplierEdit?.date) : ''}
 										onChange={date => handleDateSelect(date, setFieldValue)}
 										customInput={<div />}
 										showTimeSelect
@@ -186,6 +186,7 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 										timeCaption='time'
 										dateFormat='MMMM d, yyyy h:mm aa'
 										ref={datePickerRef}
+										popperPlacement='bottom-end'
 									/>
 									<IconDate name='date' />
 									<ErrorMsg name='date' component='span' />

@@ -76,18 +76,19 @@ function DataPage() {
 
 	const handlerFilter = e => {
 		e.preventDefault();
-		setSearchName(e.target.searchName.value);
+		if (!e.target.searchName.value.trim()) return;
+		setSearchName(e.target.searchName.value.trim());
 		setPage(1);
 	};
 
 	const clearFilter = () => {
+		if (searchName) setPage(1);
 		setSearchValue('');
 		setSearchName('');
-		setPage(1);
 	};
 
 	const handleChange = ({ target: { value } }) => {
-		setSearchValue(value);
+		setSearchValue(value.trim());
 	};
 
 	const handlePageChange = newPage => {
