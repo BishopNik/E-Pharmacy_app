@@ -8,7 +8,7 @@
 
 1. Клонуйте репозиторій на локальний комп'ютер:
 
-git clone https://github.com/BishopNik/EventPlanner_app.git
+git clone https://github.com/BishopNik/E-Pharmacy_app.git
 
 2. Перейдіть до директорії проекту:
    cd your-project-folder

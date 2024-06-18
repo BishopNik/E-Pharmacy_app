@@ -1,8 +1,7 @@
 /** @format */
 
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
-// import { MainContext } from 'components/Helpers';
 
 Modal.setAppElement('#root');
 
@@ -33,14 +32,6 @@ export const customStyles = {
 };
 
 const ModalWindow = ({ children, isOpen, onRequestClose }) => {
-	// const { setIsOpenSidebar } = useContext(MainContext);
-
-	// useEffect(() => {
-	// 	if (isOpen) {
-	// 		setIsOpenSidebar(false);
-	// 	}
-	// }, [isOpen, setIsOpenSidebar]);
-
 	return (
 		<Modal
 			isOpen={isOpen}
