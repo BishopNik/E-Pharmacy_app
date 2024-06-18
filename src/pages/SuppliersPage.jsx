@@ -21,6 +21,12 @@ import {
 	SupplierButtonEdit,
 	IconEdit,
 	Status,
+	NameContainer,
+	AddressContainer,
+	CompanyContainer,
+	DateContainer,
+	AmountContainer,
+	StatusContainer,
 } from 'components/styled.components/SuppliersPage.styled';
 
 function DataPage() {
@@ -180,13 +186,25 @@ function DataPage() {
 						{data &&
 							data?.map(({ address, amount, company, date, name, status, _id }) => (
 								<TableTr key={_id}>
-									<TableTd>{name}</TableTd>
-									<TableTd>{address}</TableTd>
-									<TableTd>{company}</TableTd>
-									<TableTd>{formatDate(date)}</TableTd>
-									<TableTd>{amount.toFixed(2)}</TableTd>
 									<TableTd>
-										<Status type={status}>{status}</Status>
+										<NameContainer>{name}</NameContainer>
+									</TableTd>
+									<TableTd>
+										<AddressContainer>{address}</AddressContainer>
+									</TableTd>
+									<TableTd>
+										<CompanyContainer>{company}</CompanyContainer>
+									</TableTd>
+									<TableTd>
+										<DateContainer>{formatDate(date)}</DateContainer>
+									</TableTd>
+									<TableTd>
+										<AmountContainer>{amount.toFixed(2)}</AmountContainer>
+									</TableTd>
+									<TableTd>
+										<StatusContainer>
+											<Status type={status}>{status}</Status>
+										</StatusContainer>
 									</TableTd>
 									<TableTd>
 										<SupplierButtonEdit

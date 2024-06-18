@@ -24,7 +24,6 @@ export const Container = styled.div`
 export const TableContainer = styled.div`
 	border: 1px solid var(--accent-disabled);
 	border-radius: 8px;
-	overflow: hidden;
 	margin-bottom: 20px;
 	width: calc(100vw - 20px);
 	overflow: scroll;
@@ -92,7 +91,7 @@ export const TableTh = styled.th`
 
 	font-weight: 500;
 	font-size: 12px;
-	line-height: 129%;
+	line-height: 117%;
 	color: var(--text-grey);
 	cursor: ${({ $reverse, $sortBy, type }) =>
 		$sortBy === type ? ($reverse ? 's-resize' : 'n-resize') : 'pointer'};
@@ -117,6 +116,7 @@ export const TableTh = styled.th`
 
 	@media screen and (min-width: 768px) {
 		font-size: 14px;
+		line-height: 129%;
 		padding: 20px;
 		width: ${({ type }) => {
 			switch (type) {
@@ -215,8 +215,13 @@ export const UserInfo = styled.div`
 
 export const UserLogo = styled.img`
 	border-radius: 50%;
-	width: 36px;
-	height: 36px;
+	width: 24px;
+	height: 24px;
+
+	@media screen and (min-width: 768px) {
+		width: 36px;
+		height: 36px;
+	}
 `;
 
 export const UserName = styled.p`

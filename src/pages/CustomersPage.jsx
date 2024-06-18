@@ -19,6 +19,9 @@ import {
 	UserInfo,
 	UserName,
 	UserLogo,
+	AddressContainer,
+	PhoneContainer,
+	DateContainer,
 } from 'components/styled.components/CustomersPage.styled';
 
 function DataPage() {
@@ -155,8 +158,12 @@ function DataPage() {
 										<TableTd>
 											<EmailContainer>{email}</EmailContainer>
 										</TableTd>
-										<TableTd>{address}</TableTd>
-										<TableTd>{phone}</TableTd>
+										<TableTd>
+											<AddressContainer>{address}</AddressContainer>
+										</TableTd>
+										<TableTd>
+											<PhoneContainer>{phone}</PhoneContainer>
+										</TableTd>
 										<TableTd>{formatDate(register_date)}</TableTd>
 									</TableTr>
 								)

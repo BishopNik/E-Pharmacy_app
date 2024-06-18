@@ -25,6 +25,11 @@ import {
 	ButtonContainer,
 	ButtonAction,
 	IconAction,
+	NameContainer,
+	CategoryContainer,
+	StockContainer,
+	SupplersContainer,
+	PriceContainer,
 } from 'components/styled.components/ProductsPage.styled';
 
 function DataPage() {
@@ -201,11 +206,21 @@ function DataPage() {
 						{data &&
 							data?.map(({ name, category, stock, suppliers, price, _id }) => (
 								<TableTr key={_id}>
-									<TableTd>{name}</TableTd>
-									<TableTd>{category}</TableTd>
-									<TableTd>{stock}</TableTd>
-									<TableTd>{suppliers}</TableTd>
-									<TableTd>{price.toFixed(2)}</TableTd>
+									<TableTd>
+										<NameContainer>{name}</NameContainer>
+									</TableTd>
+									<TableTd>
+										<CategoryContainer>{category}</CategoryContainer>
+									</TableTd>
+									<TableTd>
+										<StockContainer>{stock}</StockContainer>
+									</TableTd>
+									<TableTd>
+										<SupplersContainer>{suppliers}</SupplersContainer>
+									</TableTd>
+									<TableTd>
+										<PriceContainer>{price.toFixed(2)}</PriceContainer>
+									</TableTd>
 									<TableTd>
 										<ButtonContainer>
 											<ButtonAction
