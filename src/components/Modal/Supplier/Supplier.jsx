@@ -29,6 +29,7 @@ import {
 function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isShowList, setIsShowList] = useState(false);
+	const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 	const [status, setStatus] = useState(supplierEdit?.status);
 	const [startDate, setStartDate] = useState(supplierEdit?.date);
 	const cancelAddSupplier = useRef(null);
@@ -166,7 +167,9 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 								</FieldContainer>
 								<FieldContainer>
 									<FieldStyled
-										$statusError={!errors.date && touched.date}
+										$statusError={
+											!errors.date && touched.date && !isCalendarOpen
+										}
 										onChange={date => handleDateSelect(date, setFieldValue)}
 										value={startDate ? formatISO(startDate) : ''}
 										type='text'
@@ -176,9 +179,13 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 										readOnly
 									/>
 									<DatePicker
-										selected={startDate ? new Date(supplierEdit?.date) : ''}
-										openToDate={startDate ? new Date(supplierEdit?.date) : ''}
+										selected={startDate ? new Date(startDate) : ''}
+										openToDate={
+											supplierEdit?.date ? new Date(supplierEdit?.date) : ''
+										}
 										onChange={date => handleDateSelect(date, setFieldValue)}
+										onCalendarOpen={() => setIsCalendarOpen(true)}
+										onCalendarClose={() => setIsCalendarOpen(false)}
 										customInput={<div />}
 										showTimeSelect
 										timeFormat='HH:mm'
@@ -189,7 +196,7 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 										popperPlacement='bottom-end'
 									/>
 									<IconDate name='date' />
-									<ErrorMsg name='date' component='span' />
+									{!isCalendarOpen && <ErrorMsg name='date' component='span' />}
 								</FieldContainer>
 								<FieldContainer>
 									<FieldStyled

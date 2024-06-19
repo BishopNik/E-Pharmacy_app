@@ -26,7 +26,10 @@ export const productSchema = Yup.object().shape({
 		.oneOf(categories, 'Invalid category')
 		.required('This is a required field'),
 	stock: Yup.number().moreThan(0, 'Must be greater than 0').required('This is a required field'),
-	suppliers: Yup.string().min(2, 'Too Short!').required('This is a required field'),
+	suppliers: Yup.string()
+		.min(2, 'Too Short!')
+		.required('This is a required field')
+		.test('not-only-numbers', 'The field cannot only numbers', value => !/^\d+$/.test(value)),
 	price: Yup.number().moreThan(0, 'Must be greater than 0').required('This is a required field'),
 });
 

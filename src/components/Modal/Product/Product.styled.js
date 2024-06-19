@@ -183,6 +183,7 @@ export const ErrorMsg = styled(ErrorMessage)`
 	line-height: 150%;
 	color: red;
 	background: var(--background-3);
+	white-space: nowrap;
 
 	@media screen and (min-width: 768px) {
 		font-size: 12px;
