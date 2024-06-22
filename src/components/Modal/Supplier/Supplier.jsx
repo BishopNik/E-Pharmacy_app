@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
 import { useQueryClient, useMutation } from 'react-query';
 import DatePicker from 'react-datepicker';
-import { formatISO } from 'date-fns';
+import { format } from 'date-fns';
 import ModalWindow from '../Modal';
 import { addSupplier, editSupplierById, supplierSchema, statusList } from 'helpers';
 import { MiniLoader } from 'components/Loader';
@@ -52,6 +52,11 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 			},
 		}
 	);
+
+	const formatDate = dateString => {
+		const date = new Date(dateString);
+		return format(date, 'H:MM, MMMM dd, yyyy');
+	};
 
 	const handlerShowList = () => {
 		setIsShowList(!isShowList);
@@ -171,7 +176,7 @@ function SupplierModal({ isOpen, onRequestClose, supplierEdit }) {
 											!errors.date && touched.date && !isCalendarOpen
 										}
 										onChange={date => handleDateSelect(date, setFieldValue)}
-										value={startDate ? formatISO(startDate) : ''}
+										value={startDate ? formatDate(startDate) : ''}
 										type='text'
 										name='date'
 										placeholder='Delivery date'
